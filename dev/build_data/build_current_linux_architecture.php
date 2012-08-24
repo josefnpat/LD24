@@ -3,7 +3,7 @@
 $bin = "/usr/bin/love";
 $files = explode("\n",rtrim(`ldd $bin`));
 
-$skip_cases = array("libGL.so","tls.so","glcore.so");//libX
+$skip_cases = array();//"libGL.so","tls.so","glcore.so");//libX
 $skip_starts = array();//"/lib/");
 $valid = array();
 
