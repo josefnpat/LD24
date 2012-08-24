@@ -21,22 +21,22 @@ cd ..
 mkdir tmp
 
 # Linux 32 bit
-cp dev/build_data/love_i686/ tmp/ -r
-cp dev/build_data/run.sh tmp/
-cp ${NAME}_${GIT}.love tmp/
-cd tmp
-tar czvf ../${NAME}_linux-i686[$GIT].tar.gz *
-cd ..
-rm tmp/* -rf #tmp cleanup
+#cp dev/build_data/love_i686/ tmp/ -r
+#cp dev/build_data/run.sh tmp/
+#cp ${NAME}_${GIT}.love tmp/
+#cd tmp
+#tar czvf ../${NAME}_linux-i686[$GIT].tar.gz *
+#cd ..
+#rm tmp/* -rf #tmp cleanup
 
 # Linux 64 bit
-cp dev/build_data/love_x86_64/ tmp/ -r
-cp dev/build_data/run.sh tmp/
-cp ${NAME}_${GIT}.love tmp/
-cd tmp
-tar czvf ../${NAME}_linux-x86_64[$GIT].tar.gz *
-cd ..
-rm tmp/* -rf #tmp cleanup
+#cp dev/build_data/love_x86_64/ tmp/ -r
+#cp dev/build_data/run.sh tmp/
+#cp ${NAME}_${GIT}.love tmp/
+#cd tmp
+#tar czvf ../${NAME}_linux-x86_64[$GIT].tar.gz *
+#cd ..
+#rm tmp/* -rf #tmp cleanup
 
 # Windows 32 bit
 cat dev/build_data/love-$VERSION\-win-x86/love.exe ${NAME}_${GIT}.love > tmp/${NAME}_${GIT}.exe
