@@ -1,4 +1,4 @@
-client/git.lua
+src/git.lua
 LD24_*.tar.gz
 LD24_*.zip
 LD24_*.love
