@@ -10,10 +10,10 @@ function chartlib.new(buffersize)
   -- Config
   chart.roundto = 1 --number of decimal places to round to
   chart.color = {}
-  chart.color.axis = {255,255,255}
-  chart.color.bars = {255,0,0}
+  chart.color.axis = {63,63,63}
+  chart.color.bars = {255,0,0,63}
   chart.color.text = {255,255,255}
-  chart.color.avg  = {0,255,0}
+  chart.color.avg  = {0,127,0}
   chart.buffersize = buffersize
   -- Private Variables
   chart._count = 0
