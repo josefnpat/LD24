@@ -7,10 +7,7 @@ function horizon.load(arg)
   end
   horizon.lines = {}
   for i = 1,horizon.max_lines do
-    local line = {}
-    for i = 1,horizon.max_points+1 do
-      table.insert(line,math.random(1,horizon.max_point))
-    end
+    local line = horizon.genline()
     table.insert(horizon.lines,1,line)
   end
 end
@@ -62,15 +59,20 @@ horizon.lines = {}
 horizon.max_points = 8
 horizon.max_lines = 128
 function horizon.newline()
-  local line = {}
-  for i = 1,horizon.max_points+1 do
---    table.insert(line,math.random(1,horizon.max_point))
-    table.insert(line,math.abs(math.cos(i*math.pi/10))*math.random(1,horizon.max_point)+math.random(1,4))
-  end
+  local line = horizon.genline()
   if #horizon.lines >= horizon.max_lines then
     table.remove(horizon.lines,#horizon.lines)
   end
   table.insert(horizon.lines,1,line)
+end
+
+function horizon.genline()
+  local line = {}
+  for i = 1,horizon.max_points+1 do
+--    table.insert(line,math.random(1,horizon.max_point)) --Random
+    table.insert(line,math.abs(math.cos(i*math.pi/10))*math.random(1,horizon.max_point)+math.random(1,4)) --Cos Random
+  end
+  return line
 end
 
 horizon.layer_callbacks = {}
