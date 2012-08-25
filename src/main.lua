@@ -16,12 +16,12 @@ end
 
 function love.draw()
   horizon.draw()
-  debug.draw()
+  bullets.draw()
+  player.draw()
   if pause then
     love.graphics.printf("PAUSED [F1]",0,16,800,"center")
   end
-  bullets.draw()
-  player.draw()
+  debug.draw()
 end
 
 function love.update(dt)

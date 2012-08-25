@@ -51,7 +51,7 @@ player.charlie.ship = love.graphics.newImage("assets/charlie_ship.png")
 player.charlie.bullet = love.graphics.newImage("assets/charlie_bullet.png")
 player.charlie.name = "Charlie"
 
-player.char = player.charlie
+player.char = player.kurtz
 player.x = love.graphics.getWidth()/2
 player.y = love.graphics.getHeight()*3/4
 
@@ -95,6 +95,8 @@ end
 function player.draw()
   love.graphics.setColor(player.char.color[1],player.char.color[2],player.char.color[3])
   love.graphics.draw(player.char.ship,player.x,player.y,0,1,1,player.char.ship:getWidth()/2,player.char.ship:getHeight()/2)
+  love.graphics.setColor(255,255,255)
+  love.graphics.draw(player.char.portrait,(love.graphics.getWidth()-player.char.portrait:getWidth()/2-32),32,0,0.5,0.5)
 end
 
 return player
