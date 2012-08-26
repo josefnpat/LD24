@@ -1,23 +1,29 @@
 enemy = {}
 
 enemy.type = {}
-enemy.type[1] = {}
-enemy.type[1].img = love.graphics.newImage("assets/enemy_1.png")
+
+for i = 1,10 do
+  enemy.type[i] = {}
+  enemy.type[i].img = love.graphics.newImage("assets/enemy_"..i..".png")
+end
+
 enemy.type[1].hp = 2
 enemy.type[1].speed = 100
 enemy.type[1].shoot_rate = 4
 
-enemy.type[2] = {}
-enemy.type[2].img = love.graphics.newImage("assets/enemy_2.png")
 enemy.type[2].hp = 4
 enemy.type[2].speed = 100
 enemy.type[2].shoot_rate = 2
 
-enemy.type[3] = {}
-enemy.type[3].img = love.graphics.newImage("assets/enemy_3.png")
 enemy.type[3].hp = 6
 enemy.type[3].speed = 100
 enemy.type[3].shoot_rate = 1
+
+for i = 4,10 do
+  enemy.type[i].hp = 6
+  enemy.type[i].speed = 10
+  enemy.type[i].shoot_rate = 1
+end
 
 enemy.bullet = love.graphics.newImage("assets/enemy_bullet.png")
 
@@ -32,7 +38,7 @@ function enemy.reset()
   
   enemy.wave = {}
   enemy.wave[1] = {}
-  enemy.wave[1].type_list = {1,2,3}
+  enemy.wave[1].type_list = {10,0,0,0,0,0,0,0,0,10}
   
   local shortcut1 = enemy.wave[1]
   function shortcut1.setColor(line_index,max_lines)
@@ -61,7 +67,7 @@ function enemy.draw()
     love.graphics.setColor(255,255,255,trans/4)
     love.graphics.circle("fill",v.x,v.y,64*v.hp/enemy.type[v.type].hp,64)
     love.graphics.setColor(127,0,0,trans)
-    love.graphics.draw(enemy.type[v.type].img,v.x,v.y,0,1,1,64,32)
+    love.graphics.draw(enemy.type[v.type].img,v.x,v.y,0,1,1,enemy.type[v.type].img:getWidth()/2,enemy.type[v.type].img:getHeight()/2)
   end
 end
 
@@ -88,13 +94,6 @@ function enemy.get_type_from_wave_god_fucking_damn_it()
 end
 
 function enemy.update(dt)
-  if false then --enemy.wave[enemy.cwave] then
-    print("=========")
-    print("total: "..#enemy.data);
-    for i,v in ipairs(enemy.wave[enemy.cwave].type_list) do
-      print(i,v)
-    end
-  end
   if enemy.cwave == #enemy.wave+1 and not player.current_say then
     if #enemy.data == 0 then
       state = "endgame"
@@ -130,7 +129,7 @@ function enemy.update(dt)
       bullet.enemy = true
       table.insert(bullets.data,bullet)
     end
-    v.y = v.y + dt*150
+    v.y = v.y + dt*enemy.type[v.type].speed
     if v.y >664 then
       table.remove(enemy.data,i)
     end

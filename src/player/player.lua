@@ -7,7 +7,6 @@ Background:
 #993636 - Red
 #996736 - Brown
 
-
 Penguin - Tuxxer
 Monkey - Charlie
 Frog - Kurtz
@@ -77,7 +76,6 @@ function player.load(arg)
   player.max_dps = 0
   for i,v in pairs(player.chars) do
     if v.hp > player.max_hp then
-      print(v.hp)
       player.max_hp = v.hp
     end
     if v.spd > player.max_spd then
