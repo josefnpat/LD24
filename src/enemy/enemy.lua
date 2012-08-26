@@ -46,7 +46,7 @@ function enemy.reset()
     enemy.wave[i] = {}  
   end
   enemy.wave[ 1].type_list = {20}
-  enemy.wave[ 1].type_list = {1,1,1,1,1,1,1,1,1,1}
+  --enemy.wave[ 1].type_list = {1,1,1,1,1,1,1,1,1,1}
   enemy.wave[ 2].type_list = {12,8}
   enemy.wave[ 3].type_list = {0,12,8}
   enemy.wave[ 4].type_list = {0,0,12,8}
