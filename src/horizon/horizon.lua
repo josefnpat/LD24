@@ -89,5 +89,9 @@ function horizon.add_layer_callback(f)
 end
 
 function horizon.layer_color_callback(line_index,max_lines)
-  love.graphics.setColor(0,255*(line_index/max_lines),0,255)
+  if enemy.wave[enemy.cwave] and enemy.wave[enemy.cwave].setColor then
+    enemy.wave[enemy.cwave].setColor(line_index,max_lines)
+  else
+    love.graphics.setColor(0,255*(line_index/max_lines),0,255)
+  end
 end

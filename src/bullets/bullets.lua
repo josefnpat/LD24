@@ -68,6 +68,7 @@ function bullets.update(dt)
       for j,w in ipairs(enemy.data) do
         if bullets.dist(v.x,v.y,w.x,w.y) < 64 then
           table.remove(bullets.data,i)
+          enemy.current_score = enemy.current_score + 1
           w.hp = w.hp - 1
           if w.hp <= 0 then
             table.remove(enemy.data,j)

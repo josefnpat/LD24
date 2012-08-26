@@ -36,6 +36,7 @@ function love.load(arg)
   bullets.load(arg)
   gui.load(arg)
   enemy.load(arg)
+  enemy.reset()
   lovemenu.load(arg)
 end
 
@@ -141,6 +142,8 @@ function love.mousepressed(x,y,button)
     love.audio.stop( )
   elseif state == "menu" then
     lovemenu.mousepressed(x,y,button)
+  elseif state == "prelevel" then
+    prelevel.mousepressed()
   elseif state =="endgame" then
     endgame.mousepressed(x,y,button)
   end

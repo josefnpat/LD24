@@ -51,7 +51,7 @@ function prelevel.stat(name,x,y,width,height,cur,max,color)
   love.graphics.rectangle("fill",x,y,width*cur/max,height)
   if name then
     love.graphics.setColor(255,255,255)
-    love.graphics.printf(name,x,y+16,width,"center")
+    love.graphics.printf(name,x,y+12,width,"center")
   end
 end
 
@@ -68,6 +68,10 @@ function prelevel.keypressed(key)
       player.char.lifesay()
     end
   end
+end
+
+function prelevel.mousepressed()
+  prelevel.keypressed()
 end
 
 return prelevel

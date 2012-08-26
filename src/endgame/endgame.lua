@@ -26,16 +26,20 @@ function endgame.draw()
   
   love.graphics.setFont(font_ld24_small)
   love.graphics.printf(story,0,364,800,"center")
+  love.graphics.printf(enemy.getScoreString().." "..enemy.current_score.."/"..enemy.max_score,0,428,800,"center")
+  
+  love.graphics.printf("Press "..keybinding.pause.." to return to the main menu.",0,492,800,"center")
 end
 
 function endgame.keypressed(key,unicode)
-  state = "menu"
-  love.load(arg)
+  if keybinding.pause == key then
+    state = "menu"
+    love.load(arg)
+  end
 end
 
 function endgame.mousepressed(key,unicode)
-  state = "menu"
-  love.load(arg)
+  endgame.keypressed()
 end
 
 return endgame

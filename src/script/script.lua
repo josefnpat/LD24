@@ -9,7 +9,7 @@ function player.kurtz.deathsay()
 end
 
 function player.kurtz.wavesay()
-  player.say("Next Wave!",1)
+  player.say("Wave "..enemy.cwave.."!",2)
 end
 
 function player.tuxxer.lifesay()
@@ -20,8 +20,8 @@ function player.tuxxer.deathsay()
   player.say("I'm dead!",1)
 end
 
-function player.kurtz.wavesay()
-
+function player.tuxxer.wavesay()
+  player.say("Wave "..enemy.cwave.."!",2)
 end
 
 function player.charlie.lifesay()
@@ -32,8 +32,8 @@ function player.charlie.deathsay()
   player.say("I'm dead!",1)
 end
 
-function player.kurtz.wavesay()
-  player.say("Next Wave!",1)
+function player.charlie.wavesay()
+  player.say("Wave "..enemy.cwave.."!",2)
 end
 
 return script
