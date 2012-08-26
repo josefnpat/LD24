@@ -9,13 +9,25 @@ end
 
 for i = 1,9 do
   enemy.type[i].hp = i+1
-  enemy.type[i].speed = 200 - 10 * i
-  enemy.type[i].shoot_rate = 10 - i
+  enemy.type[i].speed = 200 - 15 * i
+  enemy.type[i].shoot_rate = 3 - 2*(i/10)
 end
 
 enemy.type[10].hp = 100
 enemy.type[10].speed = 10
-enemy.type[10].shoot_rate = 1
+enemy.type[10].shoot_rate = 0.5
+enemy.type[10].defaultx = 400
+
+enemy.type[ 1].color = {255,0,0}
+enemy.type[ 2].color = {0,255,0}
+enemy.type[ 3].color = {0,0,255}
+enemy.type[ 4].color = {255,255,0}
+enemy.type[ 5].color = {255,0,255}
+enemy.type[ 6].color = {0,255,255}
+enemy.type[ 7].color = {127,127,255}
+enemy.type[ 8].color = {255,127,127}
+enemy.type[ 9].color = {127,255,127}
+enemy.type[10].color = {255,255,255}
 
 enemy.bullet = love.graphics.newImage("assets/enemy_bullet.png")
 
@@ -34,15 +46,16 @@ function enemy.reset()
     enemy.wave[i] = {}  
   end
   enemy.wave[ 1].type_list = {10}
+  enemy.wave[ 1].type_list = {1,1,1,1,1,1,1,1,1,1}
   enemy.wave[ 2].type_list = {6,4}
   enemy.wave[ 3].type_list = {0,6,4}
   enemy.wave[ 4].type_list = {0,0,6,4}
   enemy.wave[ 5].type_list = {0,0,0,6,4}
-  enemy.wave[ 6].type_list = {6,5,4,3,2,1}
-  enemy.wave[ 7].type_list = {0,0,0,0,6,4}
-  enemy.wave[ 8].type_list = {0,0,0,0,0,6,4}
-  enemy.wave[ 9].type_list = {0,0,0,0,0,0,6,4}
-  enemy.wave[10].type_list = {0,0,0,0,0,0,6,4,1}
+  enemy.wave[ 6].type_list = {4,4,3,3,2,2}
+  enemy.wave[ 7].type_list = {0,0,0,0,0,6,4}
+  enemy.wave[ 8].type_list = {0,0,0,0,0,0,6,4}
+  enemy.wave[ 9].type_list = {0,0,0,0,0,0,0,6,4}
+  enemy.wave[10].type_list = {0,0,0,0,0,0,0,6,4,1}
   
   local temp_shortcut
   
@@ -118,7 +131,7 @@ function enemy.draw()
     local trans = bullets.gentrans(v.y)
     love.graphics.setColor(255,255,255,trans/4)
     love.graphics.circle("fill",v.x,v.y,64*v.hp/enemy.type[v.type].hp,64)
-    love.graphics.setColor(127,0,0,trans)
+    love.graphics.setColor(enemy.type[v.type].color[1],enemy.type[v.type].color[2],enemy.type[v.type].color[3],trans)
     love.graphics.draw(enemy.type[v.type].img,v.x,v.y,0,1,1,enemy.type[v.type].img:getWidth()/2,enemy.type[v.type].img:getHeight()/2)
   end
 end
@@ -146,11 +159,15 @@ function enemy.update(dt)
       local new_type = enemy.get_type_from_wave_god_fucking_damn_it()
       if new_type then
         local e = {}
-        e.x = math.random(32,800-32)
         e.y = -64
         e.type = new_type
-        e.dt_shoot = 0
+        e.dt_shoot = enemy.spawn_rate * 3 / 4
         e.hp = enemy.type[e.type].hp
+        if enemy.type[e.type].defaultx then
+          e.x = enemy.type[e.type].defaultx
+        else
+          e.x = math.random(32,800-32)
+        end
         table.insert(enemy.data,e)
       else
         enemy.cwave = enemy.cwave + 1
