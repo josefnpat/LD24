@@ -31,6 +31,9 @@ function bullets.update(dt)
   end
   for i,v in ipairs(bullets.data) do
     v.y = v.y - dt*600
+    if v.y < -64 then
+      table.remove(bullets.data,i)
+    end
   end
 end
 
