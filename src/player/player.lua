@@ -177,29 +177,30 @@ function player.update(dt)
 end
 
 function player.draw()
+  local yoffset = 204 -- 600 - 256 + 64) /2
   love.graphics.setColor(player.char.color[1],player.char.color[2],player.char.color[3],255-player.shipfade*100)
   love.graphics.draw(player.char.ship,player.x,player.y,0,1,1,player.char.ship:getWidth()/2,player.char.ship:getHeight()/2)
   love.graphics.setColor(255,255,255)
   local current_char = player.char
   if player.current_say then
     love.graphics.setColor(player.current_say.char.color)
-    love.graphics.rectangle("fill",400,16,400-16,128+32)
+    love.graphics.rectangle("fill",400,16+yoffset,400-16,128+32)
     love.graphics.setColor(player.color.name)
     love.graphics.setFont(font_ld24_large)
-    love.graphics.printf(player.current_say.char.name,416,32,400-64-128,"center")
+    love.graphics.printf(player.current_say.char.name,416,32+yoffset,400-64-128,"center")
     love.graphics.setFont(font_ld24_small)
     love.graphics.setColor(player.color.text)
-    love.graphics.printf(player.current_say.text,416,32+32,400-64-128,"left")
+    love.graphics.printf(player.current_say.text,416,32+32+yoffset,400-64-128,"left")
     current_char = player.current_say.char
   else
     love.graphics.setColor(player.char.color)
-    love.graphics.rectangle("fill",800-48-128,16,128+32,128+32)
+    love.graphics.rectangle("fill",800-48-128,16+yoffset,128+32,128+32)
     if #player.queue_say > 0 then
       player.current_say = table.remove(player.queue_say,1)
     end
   end
   love.graphics.setColor(255,255,255,255)
-  love.graphics.draw(current_char.portrait,(love.graphics.getWidth()-player.char.portrait:getWidth()/2-32),32,0,0.5,0.5)
+  love.graphics.draw(current_char.portrait,(love.graphics.getWidth()-player.char.portrait:getWidth()/2-32),32+yoffset,0,0.5,0.5)
 end
 
 function player.say(text,time,char)

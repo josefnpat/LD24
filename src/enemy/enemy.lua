@@ -37,16 +37,25 @@ function enemy.reset()
   enemy.cwave = 1
   
   enemy.wave = {}
-  enemy.wave[1] = {}
-  enemy.wave[1].type_list = {10,0,0,0,0,0,0,0,0,1}
+  
+  for i = 1,10 do
+    enemy.wave[i] = {}  
+  end
+  enemy.wave[1].type_list = {10,1}
+  enemy.wave[2].type_list = {10,0,0,0,0,0,0,0,0,1}
+  enemy.wave[3].type_list = {10,0,0,0,0,0,0,0,0,1}
+  enemy.wave[4].type_list = {10,0,0,0,0,0,0,0,0,1}
+  enemy.wave[5].type_list = {10,0,0,0,0,0,0,0,0,1}
+  enemy.wave[6].type_list = {10,0,0,0,0,0,0,0,0,1}
+  enemy.wave[7].type_list = {10,0,0,0,0,0,0,0,0,1}
+  enemy.wave[8].type_list = {10,0,0,0,0,0,0,0,0,1}
+  enemy.wave[9].type_list = {10,0,0,0,0,0,0,0,0,1}
+  enemy.wave[10].type_list = {10,0,0,0,0,0,0,0,0,1}
   
   local shortcut1 = enemy.wave[1]
   function shortcut1.setColor(line_index,max_lines)
     love.graphics.setColor(255*(line_index/max_lines),0,0,255)
   end
-
-  enemy.wave[2] = {}
-  enemy.wave[2].type_list = {1,2,3}
   
   enemy.max_score = 0
   enemy.current_score = 0
