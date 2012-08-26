@@ -18,15 +18,15 @@ enemy.type[10].speed = 10
 enemy.type[10].shoot_rate = 0.75
 enemy.type[10].defaultx = 400
 
-enemy.type[ 1].color = {127,0,0}
-enemy.type[ 2].color = {0,127,0}
-enemy.type[ 3].color = {0,0,127}
-enemy.type[ 4].color = {127,127,0}
-enemy.type[ 5].color = {127,0,127}
-enemy.type[ 6].color = {0,127,127}
-enemy.type[ 7].color = {127,127,127}
-enemy.type[ 8].color = {127,0,0}
-enemy.type[ 9].color = {0,127,0}
+enemy.type[ 1].color = {127,63,63}
+enemy.type[ 2].color = {191,127,127}
+enemy.type[ 3].color = {255,191,191}
+enemy.type[ 4].color = {63,127,63}
+enemy.type[ 5].color = {127,191,127}
+enemy.type[ 6].color = {191,255,191}
+enemy.type[ 7].color = {63,63,127}
+enemy.type[ 8].color = {127,127,191}
+enemy.type[ 9].color = {191,191,255}
 enemy.type[10].color = {255,255,255}
 
 enemy.bullet = love.graphics.newImage("assets/enemy_bullet.png")
@@ -46,7 +46,7 @@ function enemy.reset()
     enemy.wave[i] = {}  
   end
   enemy.wave[ 1].type_list = {20}
-  --enemy.wave[ 1].type_list = {1,1,1,1,1,1,1,1,1,1}
+  enemy.wave[ 1].type_list = {1,1,1,1,1,1,1,1,1,1}
   enemy.wave[ 2].type_list = {12,8}
   enemy.wave[ 3].type_list = {0,12,8}
   enemy.wave[ 4].type_list = {0,0,12,8}
