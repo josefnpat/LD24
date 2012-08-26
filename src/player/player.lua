@@ -75,32 +75,6 @@ end
 function player.update(dt)
   local base_speed = 75
   
-  --[[
-  local new_x
-  if love.keyboard.isDown(keybinding.left) then
-    new_x = player.x - dt * base_speed * player.char.spd
-  end
-  if love.keyboard.isDown(keybinding.right) then
-    if new_x then
-      new_x = nil
-    else
-      new_x = player.x + dt * base_speed * player.char.spd
-    end
-  end
-  
-  local new_y
-  if love.keyboard.isDown(keybinding.up) then
-    new_y = player.y - dt * base_speed * player.char.spd
-  end
-  if love.keyboard.isDown(keybinding.down) then
-    if new_y then
-      new_y = nil
-    else
-      new_y = player.y + dt * base_speed * player.char.spd
-    end
-  end
-  --]]
-  
   local new_x = 0
   if love.keyboard.isDown(keybinding.left) then
     new_x = new_x - dt * base_speed * player.char.spd
