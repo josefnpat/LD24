@@ -93,15 +93,28 @@ function player.load(arg)
   player.x = love.graphics.getWidth()/2
   player.y = love.graphics.getHeight()*3/4
   player.color = {}
-  player.color.textbg = {255,255,255,255}
-  player.color.text = {255,255,255,255}
+  player.color.textbg = {255,255,255}
+  player.color.text = {255,255,255}
   player.color.name = {54,54,54}
   player.dead_dt = 0
   player.shipfade = 0
   player.restart_time = 3
+  player.port_fade = 0
 end
 
 function player.update(dt)
+  if player.current_say then
+    player.port_fade = player.port_fade - 50*dt
+    if player.port_fade < 0 then
+      player.port_fade = 0
+    end
+  else
+    player.port_fade = player.port_fade + 50*dt
+    if player.port_fade > 255 then
+      player.port_fade = 255
+    end
+  end
+  print(player.port_fade)
   if player.char.hp_cur <= 0 then
     player.shipfade = player.shipfade + dt
     if player.shipfade > 2.55 then
@@ -180,8 +193,10 @@ function player.update(dt)
 end
 
 function player.draw()
-  local yoffset = 600-192--204 -- 600 - 256 + 64) /2
-  love.graphics.setColor(255,255,255)
+  local yoffset = 204 + (player.port_fade)/10 -- 600 - 256 + 64) /2
+  love.graphics.setColor(player.char.color[1],player.char.color[2],player.char.color[3],255-player.shipfade*100)
+  love.graphics.draw(player.char.ship,player.x,player.y,0,1,1,player.char.ship:getWidth()/2,player.char.ship:getHeight()/2)
+  love.graphics.setColor(255,255,255,255-player.port_fade)
   local current_char = player.char
   if player.current_say then
     love.graphics.setColor(player.current_say.char.color)
@@ -194,16 +209,14 @@ function player.draw()
     love.graphics.printf(player.current_say.text,416,32+32+yoffset,400-64-128,"left")
     current_char = player.current_say.char
   else
-    love.graphics.setColor(player.char.color)
+    love.graphics.setColor(player.char.color[1],player.char.color[2],player.char.color[3],255-player.port_fade)
     love.graphics.rectangle("fill",800-48-128,16+yoffset,128+32,128+32)
     if #player.queue_say > 0 then
       player.current_say = table.remove(player.queue_say,1)
     end
   end
-  love.graphics.setColor(255,255,255,255)
+  love.graphics.setColor(255,255,255,255-player.port_fade)
   love.graphics.draw(current_char.portrait,(love.graphics.getWidth()-player.char.portrait:getWidth()/2-32),32+yoffset,0,0.5,0.5)
-  love.graphics.setColor(player.char.color[1],player.char.color[2],player.char.color[3],255-player.shipfade*100)
-  love.graphics.draw(player.char.ship,player.x,player.y,0,1,1,player.char.ship:getWidth()/2,player.char.ship:getHeight()/2)
   love.graphics.setColor(255,255,255,255)
 end
 

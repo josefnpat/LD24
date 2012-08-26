@@ -58,9 +58,9 @@ function love.draw()
     lovemenu.draw()
   elseif state == "game" then
     horizon.draw()
-    player.draw()
     bullets.draw()
     enemy.draw()
+    player.draw()
     gui.draw()
   elseif state =="prelevel" then
     prelevel.draw()
