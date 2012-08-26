@@ -2,7 +2,7 @@ horizon = {}
 
 function horizon.load(arg)
   horizon.max_lines = 128
-  horizon.max_point = 24
+  horizon.max_point = 8
   horizon.max_points = 8
   horizon.lines = {}
   for i = 1,horizon.max_lines do

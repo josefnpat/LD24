@@ -8,7 +8,7 @@ for i = 1,10 do
 end
 
 for i = 1,9 do
-  enemy.type[i].hp = i+1
+  enemy.type[i].hp = math.floor((i+1)/2)
   enemy.type[i].speed = 200 - 15 * i
   enemy.type[i].shoot_rate = 2 - 1.5*(i/10)
 end
@@ -18,15 +18,15 @@ enemy.type[10].speed = 10
 enemy.type[10].shoot_rate = 0.75
 enemy.type[10].defaultx = 400
 
-enemy.type[ 1].color = {255,0,0}
-enemy.type[ 2].color = {0,255,0}
-enemy.type[ 3].color = {0,0,255}
-enemy.type[ 4].color = {255,255,0}
-enemy.type[ 5].color = {255,0,255}
-enemy.type[ 6].color = {0,255,255}
-enemy.type[ 7].color = {127,127,255}
-enemy.type[ 8].color = {255,127,127}
-enemy.type[ 9].color = {127,255,127}
+enemy.type[ 1].color = {127,0,0}
+enemy.type[ 2].color = {0,127,0}
+enemy.type[ 3].color = {0,0,127}
+enemy.type[ 4].color = {127,127,0}
+enemy.type[ 5].color = {127,0,127}
+enemy.type[ 6].color = {0,127,127}
+enemy.type[ 7].color = {127,127,127}
+enemy.type[ 8].color = {127,0,0}
+enemy.type[ 9].color = {0,127,0}
 enemy.type[10].color = {255,255,255}
 
 enemy.bullet = love.graphics.newImage("assets/enemy_bullet.png")
@@ -66,51 +66,61 @@ function enemy.reset()
   temp_shortcut = enemy.wave[1]
   function temp_shortcut.setColor(line_index,max_lines)
     love.graphics.setColor(base_red*0,base_green*(line_index/max_lines),0,255*(line_index/max_lines))
+    horizon.max_point = 6
   end
   
   temp_shortcut = enemy.wave[2]
   function temp_shortcut.setColor(line_index,max_lines)
     love.graphics.setColor(base_red*1,base_green*(line_index/max_lines),0,255*(line_index/max_lines))
+    horizon.max_point = 12
   end
   
   temp_shortcut = enemy.wave[3]
   function temp_shortcut.setColor(line_index,max_lines)
     love.graphics.setColor(base_red*2,base_green*(line_index/max_lines),0,255*(line_index/max_lines))
+    horizon.max_point = 18
   end
   
   temp_shortcut = enemy.wave[4]
   function temp_shortcut.setColor(line_index,max_lines)
     love.graphics.setColor(base_red*3,base_green*(line_index/max_lines),0,255*(line_index/max_lines))
+    horizon.max_point = 24
   end
   
   temp_shortcut = enemy.wave[5]
   function temp_shortcut.setColor(line_index,max_lines)
     love.graphics.setColor(base_red*4,base_green*(line_index/max_lines),0,255*(line_index/max_lines))
+    horizon.max_point = 30
   end
   
   temp_shortcut = enemy.wave[6]
   function temp_shortcut.setColor(line_index,max_lines)
     love.graphics.setColor(base_red*5,base_green*(line_index/max_lines),0,255*(line_index/max_lines))
+    horizon.max_point = 36
   end
   
   temp_shortcut = enemy.wave[7]
   function temp_shortcut.setColor(line_index,max_lines)
     love.graphics.setColor(base_red*6,base_green*(line_index/max_lines),0,255*(line_index/max_lines))
+    horizon.max_point = 42
   end
   
   temp_shortcut = enemy.wave[8]
   function temp_shortcut.setColor(line_index,max_lines)
     love.graphics.setColor(base_red*7,base_green*(line_index/max_lines),0,255*(line_index/max_lines))
+    horizon.max_point = 48
   end
   
   temp_shortcut = enemy.wave[9]
   function temp_shortcut.setColor(line_index,max_lines)
     love.graphics.setColor(base_red*8,base_green*(line_index/max_lines),0,255*(line_index/max_lines))
+    horizon.max_point = 54
   end
   
   temp_shortcut = enemy.wave[10]
   function temp_shortcut.setColor(line_index,max_lines)
     love.graphics.setColor(base_red*9,base_green*(line_index/max_lines),0,255*(line_index/max_lines))
+    horizon.max_point = 60
   end
   
   enemy.max_score = 0
@@ -168,6 +178,7 @@ function enemy.update(dt)
         if enemy.type[e.type].defaultx then
           enemy.boss = e
           e.x = enemy.type[e.type].defaultx
+          e.xfly = 0
         else
           e.x = math.random(16,800-16)
         end
