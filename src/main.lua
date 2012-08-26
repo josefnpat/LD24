@@ -20,6 +20,14 @@ enemy = require("enemy/enemy")
 endgame = require("endgame/endgame")
 lovemenu = require("lovemenu")
 
+musiclib = {}
+musiclib.music_menu = love.audio.newSource("assets/music/menu.ogg", "stream" )
+musiclib.music_menu:setLooping(true)
+musiclib.music_prelevel = love.audio.newSource("assets/music/prelevel.ogg", "stream" )
+musiclib.music_prelevel:setLooping(true)
+musiclib.music_game = love.audio.newSource("assets/music/game.ogg", "stream" )
+musiclib.music_game:setLooping(true)
+
 font_ld24_small = love.graphics.newFont("assets/ld24.ttf",16)
 font_ld24_small:setLineHeight(1.2)
 font_ld24_large = love.graphics.newFont("assets/ld24.ttf",32)
@@ -71,6 +79,7 @@ function love.draw()
   debug.draw()
 end
 
+
 function love.update(dt)
   chart_fps:push(love.timer.getFPS())
   if debug.hard_pause then return end
@@ -97,6 +106,7 @@ function love.update(dt)
   elseif state =="prelevel" then
     prelevel.update(dt)  
   end
+  update_song()
 end
 
 function love.keypressed(key,unicode)
@@ -149,4 +159,39 @@ function love.mousepressed(x,y,button)
   elseif state =="endgame" then
     endgame.mousepressed(x,y,button)
   end
+end
+
+music_menu_isPlaying = false
+music_prelevel_isPlaying = false
+function update_song()
+  if state == "menu" and music then
+    if not music_menu_isPlaying then
+      musiclib.music_menu:play()
+      music_menu_isPlaying = true;
+    end
+  else
+    musiclib.music_menu:stop()
+    music_menu_isPlaying = false;
+  end
+  
+  if state == "prelevel" and music then
+    if not music_prelevel_isPlaying then
+      musiclib.music_prelevel:play()
+      music_prelevel_isPlaying = true;
+    end
+  else
+    musiclib.music_prelevel:stop()
+    music_prelevel_isPlaying = false;
+  end
+  
+  if state == "game" and music then
+    if not music_game_isPlaying then
+      musiclib.music_game:play()
+      music_game_isPlaying = true;
+    end
+  else
+    musiclib.music_game:stop()
+    music_game_isPlaying = false;
+  end
+  
 end
