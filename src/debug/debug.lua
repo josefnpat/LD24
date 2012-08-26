@@ -27,6 +27,7 @@ function debug.draw()
   if debug.enabled then
     love.graphics.printf("DEBUG [~]",32,16,200,"center")
     chart_fps:draw("PFS",32,32,nil,64)
+    love.graphics.print("State:"..state,32,128)
   end
 end
 
