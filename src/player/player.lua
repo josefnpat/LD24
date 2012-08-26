@@ -180,9 +180,7 @@ function player.update(dt)
 end
 
 function player.draw()
-  local yoffset = 204 -- 600 - 256 + 64) /2
-  love.graphics.setColor(player.char.color[1],player.char.color[2],player.char.color[3],255-player.shipfade*100)
-  love.graphics.draw(player.char.ship,player.x,player.y,0,1,1,player.char.ship:getWidth()/2,player.char.ship:getHeight()/2)
+  local yoffset = 600-192--204 -- 600 - 256 + 64) /2
   love.graphics.setColor(255,255,255)
   local current_char = player.char
   if player.current_say then
@@ -204,6 +202,9 @@ function player.draw()
   end
   love.graphics.setColor(255,255,255,255)
   love.graphics.draw(current_char.portrait,(love.graphics.getWidth()-player.char.portrait:getWidth()/2-32),32+yoffset,0,0.5,0.5)
+  love.graphics.setColor(player.char.color[1],player.char.color[2],player.char.color[3],255-player.shipfade*100)
+  love.graphics.draw(player.char.ship,player.x,player.y,0,1,1,player.char.ship:getWidth()/2,player.char.ship:getHeight()/2)
+  love.graphics.setColor(255,255,255,255)
 end
 
 function player.say(text,time,char)
