@@ -22,6 +22,7 @@ player.charlie = {}
 function player.load(arg)
   player.queue_say = {}
   -- FROG
+  player.kurtz.dead = nil
   player.kurtz.hp = 5
   player.kurtz.hp_cur = player.kurtz.hp
   player.kurtz.spd = 4
@@ -35,6 +36,7 @@ function player.load(arg)
   player.kurtz.name = "Kurtz"
 
   -- PENGUIN
+  player.tuxxer.dead = nil
   player.tuxxer.hp = 7
   player.tuxxer.hp_cur = player.tuxxer.hp
   player.tuxxer.spd = 5
@@ -48,6 +50,7 @@ function player.load(arg)
   player.tuxxer.name = "Tuxxer"
 
   --MONKEY
+  player.charlie.dead = nil
   player.charlie.hp = 4
   player.charlie.hp_cur = player.charlie.hp
   player.charlie.spd = 7

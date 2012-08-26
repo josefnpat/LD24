@@ -3,6 +3,8 @@ print("Current Version: v"..git_count.." ["..git.."]")
 
 math.randomseed( os.time() )
 
+splashlovelib = require("splashlovelib/splashlovelib")
+splashlib = require("splashlib/splashlib")
 prelevel = require('prelevel/prelevel')
 chartlib = require('chartlib/chartlib')
 chart_fps = chartlib.new(200)
@@ -24,7 +26,7 @@ love.graphics.setFont(font_ld24_small)
 
 pause = false
 
-state = "menu"
+state = "splashlove"
 
 function love.load(arg)
   horizon.load(arg)
@@ -37,7 +39,11 @@ function love.load(arg)
 end
 
 function love.draw()
-  if state == "menu" then
+  if state == "splashlove" then
+    splashlovelib.draw()
+  elseif state == "splash" then
+    splashlib.draw()
+  elseif state == "menu" then
     lovemenu.draw()
   elseif state == "game" then
     horizon.draw()
@@ -58,7 +64,17 @@ end
 
 function love.update(dt)
   chart_fps:push(love.timer.getFPS())
-  if state == "menu" then
+  if state == "splashlove" then
+    splashlovelib.update(dt)
+    if splashlovelib.done() then
+      state = "splash"
+    end
+  elseif state == "splash" then
+    splashlib.update(dt)
+    if splashlib.done then
+      state = "menu"
+    end
+  elseif state == "menu" then
     lovemenu.update(dt)
   elseif state == "game" then
     if not pause then
@@ -75,7 +91,12 @@ end
 
 function love.keypressed(key,unicode)
   debug.keypressed(key)
-  if state == "menu" then
+  if state == "splashlove" then
+    state = "splash"
+  elseif state == "splash" then
+    state = "menu"
+    love.audio.stop( )
+  elseif state == "menu" then
     lovemenu.keypressed(key,unicode)
   elseif state == "game" then
     if key == keybinding.pause then
@@ -92,5 +113,14 @@ function love.keypressed(key,unicode)
 end
 
 function love.mousepressed(x,y,button)
-  lovemenu.mousepressed(x,y,button)
+  if state == "splashlove" then
+    state = "splash"
+  elseif state == "splash" then
+    state = "menu"
+    love.audio.stop( )
+  elseif state == "menu" then
+    lovemenu.mousepressed(x,y,button)
+  elseif state =="endgame" then
+    endgame.mousepressed(x,y,button)
+  end
 end
