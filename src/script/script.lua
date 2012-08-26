@@ -66,9 +66,9 @@ end
 
 function player.kurtz.deathsay()
   sounds.kurtz.death:play()
-  player.say("Houston, we have a probl-",3)
-  player.say("...",3,player.charlie)
-  player.say("Kurtz!",3,player.tuxxer)
+  player.say("Houston, we have a problem.",2.25)
+  player.say("...",1,player.charlie)
+  player.say("Kurtz!",1,player.tuxxer)
 end
 
 function player.kurtz.wavesay()

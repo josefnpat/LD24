@@ -45,7 +45,9 @@ function bullets.update(dt)
     bullet.x = player.x
     bullet.y = player.y
     table.insert(bullets.data,bullet)
-    bullets.sound_shoot:play()
+    if sfx then
+      bullets.sound_shoot:play()
+    end
   end
   for i,v in ipairs(bullets.data) do
     if v.enemy then
@@ -63,7 +65,9 @@ function bullets.update(dt)
   for i,v in ipairs(bullets.data) do
     if v.enemy then
       if bullets.dist(v.x,v.y,player.x,player.y) < 64 then
-        bullets.sound_dmg:play()
+        if sfx then
+          bullets.sound_dmg:play()
+        end
         table.remove(bullets.data,i)
         if not debug.inv then
           player.char.hp_cur = player.char.hp_cur - 1
@@ -79,7 +83,9 @@ function bullets.update(dt)
           enemy.current_score = enemy.current_score + 1
           w.hp = w.hp - 1
           if w.hp <= 0 then
-            bullets.sound_enemy_dmg:play()
+            if sfx then
+              bullets.sound_enemy_dmg:play()
+            end
             table.remove(enemy.data,j)
           end
         end
