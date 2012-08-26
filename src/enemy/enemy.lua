@@ -124,41 +124,11 @@ function enemy.draw()
 end
 
 function enemy.get_type_from_wave_god_fucking_damn_it()
-  local assholes_left = false
-  local total = 0
   for i,v in ipairs(enemy.wave[enemy.cwave].type_list) do
     if v > 0 then
-      assholes_left = true
-      total = total + v
+      enemy.wave[enemy.cwave].type_list[i] = enemy.wave[enemy.cwave].type_list[i] - 1
+      return i
     end
-  end
-  if assholes_left then
-    local index_rand = nil
-    
-    
-    
-    while(not index_rand) do
-      index_rand = math.random(1,#enemy.wave[enemy.cwave].type_list)
-      
-      if index_rand then
-        if enemy.wave[enemy.cwave].type_list[index_rand] == 0  then
-          index_rand = nil
-        end
-      end
-      
-      if index_rand then
-        if enemy.wave[enemy.cwave].type_list[#enemy.wave[enemy.cwave].type_list] > 0 then
-          if total > 1 and index_rand == #enemy.wave[enemy.cwave].type_list then
-            index_rand = nil
-          end
-        end
-      end
-      
-      print("Loopin boss."..os.time())
-      
-    end
-    enemy.wave[enemy.cwave].type_list[index_rand] = enemy.wave[enemy.cwave].type_list[index_rand] - 1
-    return index_rand
   end
 end
 
