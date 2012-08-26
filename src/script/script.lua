@@ -67,24 +67,34 @@ end
 function player.kurtz.wavesay()
   if enemy.cwave == 2 then
     sounds.kurtz.wave[ 2]:play()
+    player.say("When all else fails, read the directions.",3)
   elseif enemy.cwave == 3 then
     sounds.kurtz.wave[ 3]:play()
+    player.say("Welcome to Hell...Here's your accordion.",3)
   elseif enemy.cwave == 4 then
     sounds.kurtz.wave[ 4]:play()
+    player.say("Never hit a guy with glasses. Always use your fists.",3)
   elseif enemy.cwave == 5 then
     sounds.kurtz.wave[ 5]:play()
+    player.say("The only time I open my mouth is to change feet.",3)
   elseif enemy.cwave == 6 then
     sounds.kurtz.wave[ 6]:play()
+    player.say("True friends always stab you in the front.",3)
   elseif enemy.cwave == 7 then
     sounds.kurtz.wave[ 7]:play()
+    player.say("I'll have to think twice about it before I give it a second thought.",3)
   elseif enemy.cwave == 8 then
     sounds.kurtz.wave[ 8]:play()
+    player.say("The meek shall inherit the Earth after we're done with it.",3)
   elseif enemy.cwave == 9 then
     sounds.kurtz.wave[ 9]:play()
+    player.say("You're schizophrenic? Gee, that makes four of us.",3)
   elseif enemy.cwave == 10 then
     sounds.kurtz.wave[10]:play()
+    player.say("Floggings will continue until morale improves.",3)
   elseif enemy.cwave == 11 then
     sounds.kurtz.wave[11]:play()
+    player.say("Honesty is the best policy. But insanity is a better defense.",3)
   end
 end
 
