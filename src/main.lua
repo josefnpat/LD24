@@ -11,6 +11,7 @@ bullets = require("bullets/bullets")
 font_ld24_small = love.graphics.newFont("assets/ld24.ttf",16)
 font_ld24_small:setLineHeight(1.2)
 font_ld24_large = love.graphics.newFont("assets/ld24.ttf",32)
+font_ld24_xlarge = love.graphics.newFont("assets/ld24.ttf",64)
 love.graphics.setFont(font_ld24_small)
 
 pause = false
@@ -20,6 +21,7 @@ state = "prelevel"
 function love.load(arg)
   horizon.load(arg)
   player.load(arg)
+  prelevel.load(arg)
   player.say("Kurtz!",1,player.charlie)
   player.say("I'm going down! Tell kurtz that I ...",4,player.tuxxer)
   player.say("Kurtz!",1,player.charlie)

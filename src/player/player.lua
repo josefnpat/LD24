@@ -117,8 +117,8 @@ function player.draw()
   love.graphics.draw(player.char.ship,player.x,player.y,0,1,1,player.char.ship:getWidth()/2,player.char.ship:getHeight()/2)
   love.graphics.setColor(255,255,255)
   local current_char = player.char
-  love.graphics.setColor(player.char.color)
   if player.current_say then
+    love.graphics.setColor(player.current_say.char.color)
     love.graphics.rectangle("fill",400,16,400-16,128+32)
     love.graphics.setColor(player.color.name)
     love.graphics.setFont(font_ld24_large)
@@ -128,6 +128,7 @@ function player.draw()
     love.graphics.printf(player.current_say.text,416,32+32,400-64-128,"left")
     current_char = player.current_say.char
   else
+    love.graphics.setColor(player.char.color)
     love.graphics.rectangle("fill",800-48-128,16,128+32,128+32)
     if #player.queue_say > 0 then
       player.current_say = table.remove(player.queue_say,1)
