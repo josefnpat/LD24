@@ -21,7 +21,7 @@ enemy.type[3].shoot_rate = 1
 
 for i = 4,10 do
   enemy.type[i].hp = 6
-  enemy.type[i].speed = 10
+  enemy.type[i].speed = 100
   enemy.type[i].shoot_rate = 1
 end
 
@@ -38,7 +38,7 @@ function enemy.reset()
   
   enemy.wave = {}
   enemy.wave[1] = {}
-  enemy.wave[1].type_list = {10,0,0,0,0,0,0,0,0,10}
+  enemy.wave[1].type_list = {10,0,0,0,0,0,0,0,0,1}
   
   local shortcut1 = enemy.wave[1]
   function shortcut1.setColor(line_index,max_lines)
@@ -73,20 +73,32 @@ end
 
 function enemy.get_type_from_wave_god_fucking_damn_it()
   local assholes_left = false
+  local total = 0
   for i,v in ipairs(enemy.wave[enemy.cwave].type_list) do
     if v > 0 then
       assholes_left = true
-      break
+      total = total + v
     end
   end
-  
   if assholes_left then
     local index_rand = nil
     while(not index_rand) do
-      index_rand = math.random(1,#enemy.wave[enemy.cwave].type_list)    
-      if enemy.wave[enemy.cwave].type_list[index_rand] == 0 then
-        index_rand = nil
+      index_rand = math.random(1,#enemy.wave[enemy.cwave].type_list)
+      
+      if index_rand then
+        if enemy.wave[enemy.cwave].type_list[index_rand] == 0  then
+          index_rand = nil
+        end
       end
+      
+      if index_rand then
+        if enemy.wave[enemy.cwave].type_list[#enemy.wave[enemy.cwave].type_list] > 0 then
+          if total > 1 and index_rand == #enemy.wave[enemy.cwave].type_list then
+            index_rand = nil
+          end
+        end
+      end
+      
     end
     enemy.wave[enemy.cwave].type_list[index_rand] = enemy.wave[enemy.cwave].type_list[index_rand] - 1
     return index_rand

@@ -34,6 +34,7 @@ end
 function endgame.keypressed(key,unicode)
   if keybinding.pause == key then
     state = "menu"
+    lovemenu.remove_continue_game()
     love.load(arg)
   end
 end

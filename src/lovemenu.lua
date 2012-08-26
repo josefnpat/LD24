@@ -9,11 +9,15 @@ function lovemenu.load()
     title="Untitled",
     desc="Missing description\n  "..git_string,
     {t="New Game",cb="ng"},
-    {t="Continue Game",cb="ng"},
     {t="Options",cb="op"},
     {t="Credits",cb="cr"},
     {t="Exit",cb="exit"}
   }
+  
+  if lovemenu.continue_game then
+    table.insert(menu_view[1],1,{t="Continue Game",cb="cg"})
+  end
+  
   menu_view[2] = {
     title="Options",
     desc="Set your options here.",
@@ -43,6 +47,22 @@ function lovemenu.load()
   
 end
 
+lovemenu.continue_game = false
+
+function lovemenu.add_continue_game()
+  if not lovemenu.continue_game then
+    table.insert(menu_view[1],1,{t="Continue Game",cb="cg"})
+    lovemenu.continue_game = true
+  end
+end
+
+function lovemenu.remove_continue_game()
+  if lovemenu.continue_game then
+    table.remove(menu_view[1],1)
+    lovemenu.continue_game = false
+  end
+end
+
 function menu.extralayercallback()
   love.graphics.draw(player.chars[lovemenu.rand].portrait,400,600-256)
   love.graphics.setColor(player.chars[lovemenu.rand].color[1],player.chars[lovemenu.rand].color[2],player.chars[lovemenu.rand].color[3],127)
@@ -62,6 +82,10 @@ sfx = true
 music = true
 function menu:callback(cb)
   if cb == "ng" then
+    love.load(arg)
+    state = "prelevel"
+    lovemenu.add_continue_game()
+  elseif cb == "cg" then
     state = "prelevel"
   elseif cb == "op" then
     menu:setstate(2)
