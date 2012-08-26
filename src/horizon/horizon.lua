@@ -88,10 +88,25 @@ function horizon.add_layer_callback(f)
   table.insert(horizon.layer_callbacks,f)
 end
 
+hor_debug_r_min = 0
+hor_debug_r_max = 255
+
+hor_debug_g_min = 0
+hor_debug_g_max = 255
+
+hor_debug_b_min = 0
+hor_debug_b_max = 255
+
+
 function horizon.layer_color_callback(line_index,max_lines)
   if enemy.wave[enemy.cwave] and enemy.wave[enemy.cwave].setColor then
     enemy.wave[enemy.cwave].setColor(line_index,max_lines)
   else
-    love.graphics.setColor(0,255*(line_index/max_lines),0,255)
+    if debug.enabled then
+      love.graphics.setColor(math.random(hor_debug_r_min,hor_debug_r_max),math.random(hor_debug_g_min,hor_debug_g_max),math.random(hor_debug_b_min,hor_debug_b_max))
+    else
+      love.graphics.setColor(math.random(128,192),math.random(128,192),0,255*(line_index/max_lines))
+      --love.graphics.setColor(0,255*(line_index/max_lines),0,255)--old
+    end
   end
 end

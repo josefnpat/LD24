@@ -7,23 +7,15 @@ for i = 1,10 do
   enemy.type[i].img = love.graphics.newImage("assets/enemy_"..i..".png")
 end
 
-enemy.type[1].hp = 2
-enemy.type[1].speed = 100
-enemy.type[1].shoot_rate = 4
-
-enemy.type[2].hp = 4
-enemy.type[2].speed = 100
-enemy.type[2].shoot_rate = 2
-
-enemy.type[3].hp = 6
-enemy.type[3].speed = 100
-enemy.type[3].shoot_rate = 1
-
-for i = 4,10 do
-  enemy.type[i].hp = 6
-  enemy.type[i].speed = 100
-  enemy.type[i].shoot_rate = 1
+for i = 1,9 do
+  enemy.type[i].hp = i+1
+  enemy.type[i].speed = 200 - 10 * i
+  enemy.type[i].shoot_rate = 10 - i
 end
+
+enemy.type[10].hp = 100
+enemy.type[10].speed = 10
+enemy.type[10].shoot_rate = 1
 
 enemy.bullet = love.graphics.newImage("assets/enemy_bullet.png")
 
@@ -41,20 +33,71 @@ function enemy.reset()
   for i = 1,10 do
     enemy.wave[i] = {}  
   end
-  enemy.wave[1].type_list = {10,1}
-  enemy.wave[2].type_list = {10,0,0,0,0,0,0,0,0,1}
-  enemy.wave[3].type_list = {10,0,0,0,0,0,0,0,0,1}
-  enemy.wave[4].type_list = {10,0,0,0,0,0,0,0,0,1}
-  enemy.wave[5].type_list = {10,0,0,0,0,0,0,0,0,1}
-  enemy.wave[6].type_list = {10,0,0,0,0,0,0,0,0,1}
-  enemy.wave[7].type_list = {10,0,0,0,0,0,0,0,0,1}
-  enemy.wave[8].type_list = {10,0,0,0,0,0,0,0,0,1}
-  enemy.wave[9].type_list = {10,0,0,0,0,0,0,0,0,1}
-  enemy.wave[10].type_list = {10,0,0,0,0,0,0,0,0,1}
+  enemy.wave[ 1].type_list = {10}
+  enemy.wave[ 2].type_list = {6,4}
+  enemy.wave[ 3].type_list = {0,6,4}
+  enemy.wave[ 4].type_list = {0,0,6,4}
+  enemy.wave[ 5].type_list = {0,0,0,6,4}
+  enemy.wave[ 6].type_list = {6,5,4,3,2,1}
+  enemy.wave[ 7].type_list = {0,0,0,0,6,4}
+  enemy.wave[ 8].type_list = {0,0,0,0,0,6,4}
+  enemy.wave[ 9].type_list = {0,0,0,0,0,0,6,4}
+  enemy.wave[10].type_list = {0,0,0,0,0,0,6,4,1}
   
-  local shortcut1 = enemy.wave[1]
-  function shortcut1.setColor(line_index,max_lines)
-    love.graphics.setColor(255*(line_index/max_lines),0,0,255)
+  local temp_shortcut
+  
+  base_red = 16
+  base_green = 127
+  base_blue = 0
+
+  temp_shortcut = enemy.wave[1]
+  function temp_shortcut.setColor(line_index,max_lines)
+    love.graphics.setColor(base_red*0,base_green*(line_index/max_lines),0,255*(line_index/max_lines))
+  end
+  
+  temp_shortcut = enemy.wave[2]
+  function temp_shortcut.setColor(line_index,max_lines)
+    love.graphics.setColor(base_red*1,base_green*(line_index/max_lines),0,255*(line_index/max_lines))
+  end
+  
+  temp_shortcut = enemy.wave[3]
+  function temp_shortcut.setColor(line_index,max_lines)
+    love.graphics.setColor(base_red*2,base_green*(line_index/max_lines),0,255*(line_index/max_lines))
+  end
+  
+  temp_shortcut = enemy.wave[4]
+  function temp_shortcut.setColor(line_index,max_lines)
+    love.graphics.setColor(base_red*3,base_green*(line_index/max_lines),0,255*(line_index/max_lines))
+  end
+  
+  temp_shortcut = enemy.wave[5]
+  function temp_shortcut.setColor(line_index,max_lines)
+    love.graphics.setColor(base_red*4,base_green*(line_index/max_lines),0,255*(line_index/max_lines))
+  end
+  
+  temp_shortcut = enemy.wave[6]
+  function temp_shortcut.setColor(line_index,max_lines)
+    love.graphics.setColor(base_red*5,base_green*(line_index/max_lines),0,255*(line_index/max_lines))
+  end
+  
+  temp_shortcut = enemy.wave[7]
+  function temp_shortcut.setColor(line_index,max_lines)
+    love.graphics.setColor(base_red*6,base_green*(line_index/max_lines),0,255*(line_index/max_lines))
+  end
+  
+  temp_shortcut = enemy.wave[8]
+  function temp_shortcut.setColor(line_index,max_lines)
+    love.graphics.setColor(base_red*7,base_green*(line_index/max_lines),0,255*(line_index/max_lines))
+  end
+  
+  temp_shortcut = enemy.wave[9]
+  function temp_shortcut.setColor(line_index,max_lines)
+    love.graphics.setColor(base_red*8,base_green*(line_index/max_lines),0,255*(line_index/max_lines))
+  end
+  
+  temp_shortcut = enemy.wave[10]
+  function temp_shortcut.setColor(line_index,max_lines)
+    love.graphics.setColor(base_red*9,base_green*(line_index/max_lines),0,255*(line_index/max_lines))
   end
   
   enemy.max_score = 0
@@ -91,6 +134,9 @@ function enemy.get_type_from_wave_god_fucking_damn_it()
   end
   if assholes_left then
     local index_rand = nil
+    
+    
+    
     while(not index_rand) do
       index_rand = math.random(1,#enemy.wave[enemy.cwave].type_list)
       
@@ -107,6 +153,8 @@ function enemy.get_type_from_wave_god_fucking_damn_it()
           end
         end
       end
+      
+      print("Loopin boss."..os.time())
       
     end
     enemy.wave[enemy.cwave].type_list[index_rand] = enemy.wave[enemy.cwave].type_list[index_rand] - 1
