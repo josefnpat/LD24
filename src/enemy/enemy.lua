@@ -24,7 +24,7 @@ enemy.bullet = love.graphics.newImage("assets/enemy_bullet.png")
 function enemy.load(arg)
   enemy.data = {}
   enemy.spawn_dt = 0
-  enemy.spawn_rate = 1
+  enemy.spawn_rate = 0.75
 end
 
 function enemy.reset()
@@ -32,7 +32,6 @@ function enemy.reset()
   
   enemy.wave = {}
   enemy.wave[1] = {}
-  enemy.wave[1].spawn_rate = 1
   enemy.wave[1].type_list = {1,2,3}
   
   local shortcut1 = enemy.wave[1]
@@ -41,7 +40,6 @@ function enemy.reset()
   end
 
   enemy.wave[2] = {}
-  enemy.wave[2].spawn_rate = 1
   enemy.wave[2].type_list = {1,2,3}
   
   enemy.max_score = 0

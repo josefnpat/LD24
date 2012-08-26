@@ -23,7 +23,7 @@ function player.load(arg)
   player.queue_say = {}
   -- FROG
   player.kurtz.dead = nil
-  player.kurtz.hp = 5
+  player.kurtz.hp = 50
   player.kurtz.hp_cur = player.kurtz.hp
   player.kurtz.spd = 4
   player.kurtz.dps = 1
@@ -37,7 +37,7 @@ function player.load(arg)
 
   -- PENGUIN
   player.tuxxer.dead = nil
-  player.tuxxer.hp = 7
+  player.tuxxer.hp = 70
   player.tuxxer.hp_cur = player.tuxxer.hp
   player.tuxxer.spd = 5
   player.tuxxer.dps = 3
@@ -51,7 +51,7 @@ function player.load(arg)
 
   --MONKEY
   player.charlie.dead = nil
-  player.charlie.hp = 4
+  player.charlie.hp = 40
   player.charlie.hp_cur = player.charlie.hp
   player.charlie.spd = 7
   player.charlie.dps = 9
@@ -72,6 +72,22 @@ function player.load(arg)
   player.chars[2] = player.tuxxer
   player.chars[3] = player.charlie
 
+  player.max_hp = 0
+  player.max_spd = 0
+  player.max_dps = 0
+  for i,v in pairs(player.chars) do
+    if v.hp > player.max_hp then
+      print(v.hp)
+      player.max_hp = v.hp
+    end
+    if v.spd > player.max_spd then
+      player.max_spd = v.spd
+    end
+    if v.dps > player.max_dps then
+      player.max_dps = v.dps
+    end
+  end
+  
   player.char = player.kurtz
   player.x = love.graphics.getWidth()/2
   player.y = love.graphics.getHeight()*3/4
