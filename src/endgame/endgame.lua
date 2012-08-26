@@ -1,7 +1,7 @@
 endgame = {}
 
 function endgame.draw()
-
+  love.graphics.setColor(255,255,255,255)
   love.graphics.setFont(font_ld24_xlarge)
   
   love.graphics.printf("Game over.",0,300-32,800,"center")

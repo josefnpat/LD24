@@ -116,7 +116,7 @@ end
 
 function player.tuxxer.deathsay()
   sounds.tuxxer.death:play()
-  player.say("Why are all these lights flashing red? They don't usually do that",4)
+  player.say("Why are all these lights flashing red? They don't usually do that!",4)
   player.say("God damn it...",1.5,player.charlie)
 end
 
