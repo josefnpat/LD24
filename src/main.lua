@@ -1,5 +1,6 @@
 require("git")
-print("Current Version: v"..git_count.." ["..git.."]")
+git_string = "git: v"..git_count.." ["..git.."]";
+print(git_string)
 
 math.randomseed( os.time() )
 
@@ -51,13 +52,19 @@ function love.draw()
     enemy.draw()
     player.draw()
     gui.draw()
-    if pause then
-      love.graphics.printf("PAUSED ["..keybinding.pause.."]",0,300,800,"center")
-    end
   elseif state =="prelevel" then
     prelevel.draw()
   elseif state =="endgame" then
     endgame.draw()
+  end
+  if pause then
+    love.graphics.setColor(0,0,0,224)
+    love.graphics.rectangle("fill",0,0,love.graphics.getWidth(),love.graphics.getHeight())
+    love.graphics.setColor(255,255,255,255)
+    love.graphics.setFont(font_ld24_large)
+    love.graphics.printf("GAME PAUSED",0,300,800,"center")
+    love.graphics.setFont(font_ld24_small)
+    love.graphics.printf("Press "..keybinding.pause.." to return to menu\nPress anything else to continue.",0,332,800,"center")
   end
   debug.draw()
 end
@@ -99,17 +106,31 @@ function love.keypressed(key,unicode)
   elseif state == "menu" then
     lovemenu.keypressed(key,unicode)
   elseif state == "game" then
-    if key == keybinding.pause then
-      pause = not pause
-    end
-    if not pause then
+    if not pause and key ~= keybinding.pause  then
       bullets.keypressed(key)
     end
+    wtfpausefuckoffimtired(key)
   elseif state =="prelevel" then
-    prelevel.keypressed(key)
+    if not pause and key ~= keybinding.pause then
+      prelevel.keypressed(key)
+    end
+     wtfpausefuckoffimtired(key)
   elseif state =="endgame" then
     endgame.keypressed(key,unicode)
-  end  
+  end
+end
+
+function wtfpausefuckoffimtired(key)
+  if key == keybinding.pause then
+    if pause then
+      state = "menu"
+      pause = false
+    else
+      pause = true
+    end
+  elseif pause then
+     pause = false
+  end
 end
 
 function love.mousepressed(x,y,button)

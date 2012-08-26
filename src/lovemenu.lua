@@ -7,8 +7,9 @@ function lovemenu.load()
   menu_view = {}
   menu_view[1] = {
     title="Untitled",
-    desc="Never before has mankind seen such a sexy menu screen. Presenting the lovemenu.",
+    desc="Missing description\n  "..git_string,
     {t="New Game",cb="ng"},
+    {t="Continue Game",cb="ng"},
     {t="Options",cb="op"},
     {t="Credits",cb="cr"},
     {t="Exit",cb="exit"}
@@ -19,6 +20,7 @@ function lovemenu.load()
     {t="Fullscreen",cb="fs"},
     {t="SFX (on)",cb="sfx"},
     {t="Music (on)",cb="music"},
+    {t="Move (ΑΔΓΒ)",cb="move"},
     {t="Return",cb="mm"}
   }
   menu_view[3] = {
@@ -89,6 +91,17 @@ function menu:callback(cb)
       temp_s = "off"
     end
     menu_view[2][3].t = "Music ("..temp_s..")"
+  elseif cb == "move" then
+    move = not move
+    local temp_x = ""
+    if move then
+      temp_s = "WASD"
+      keybinding.rebind.wasd()
+    else
+      temp_s = "ΑΔΓΒ"
+      keybinding.rebind.arrow()
+    end
+    menu_view[2][4].t = "Move ("..temp_s..")"
   elseif cb == "mm" then
     menu:setstate(1)
   else

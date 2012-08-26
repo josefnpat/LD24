@@ -58,9 +58,9 @@ function menu:draw()
     for i,v in ipairs(menu.view[menu.state]) do
       love.graphics.printf(
         v.t,
-        love.graphics.getWidth()*6.5/10,
+        love.graphics.getWidth()*6/10,
         (i-1)*menu.font_menu:getHeight()+menu.offset,
-        love.graphics.getWidth()*2/10,
+        love.graphics.getWidth()*2.5/10,
         "right"
       )
     end

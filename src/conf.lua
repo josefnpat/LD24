@@ -7,6 +7,21 @@ keybinding.shoot = " "
 keybinding.debug = "`"
 keybinding.pause = "escape"
 
+keybinding.rebind = {}
+function keybinding.rebind.wasd()
+  keybinding.up = "w"
+  keybinding.down = "s"
+  keybinding.right = "d"
+  keybinding.left = "a"
+end
+
+function keybinding.rebind.arrow()
+  keybinding.up = "up"
+  keybinding.down = "down"
+  keybinding.right = "right"
+  keybinding.left = "left"
+end
+
 function love.conf(t)
     t.title = "Untitled"        -- The title of the window the game is in (string)
     t.author = "josefnpat"      -- The author of the game (string)
