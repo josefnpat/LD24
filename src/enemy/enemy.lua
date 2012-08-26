@@ -166,6 +166,7 @@ function enemy.update(dt)
         e.xfly = math.random(-1,1)
         e.yfly = 1
         if enemy.type[e.type].defaultx then
+          enemy.boss = e
           e.x = enemy.type[e.type].defaultx
         else
           e.x = math.random(16,800-16)

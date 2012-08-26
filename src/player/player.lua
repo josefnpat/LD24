@@ -20,7 +20,7 @@ player.charlie = {}
 
 function player.load(arg)
 
-  local base_health_mult = 5
+  local base_health_mult = 10
   player.queue_say = {}
   -- FROG
   player.kurtz.dead = nil
