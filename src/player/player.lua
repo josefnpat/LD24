@@ -75,6 +75,7 @@ end
 function player.update(dt)
   local base_speed = 75
   
+  --[[
   local new_x
   if love.keyboard.isDown(keybinding.left) then
     new_x = player.x - dt * base_speed * player.char.spd
@@ -98,24 +99,41 @@ function player.update(dt)
       new_y = player.y + dt * base_speed * player.char.spd
     end
   end
+  --]]
   
-  if new_x then
-    if new_x > love.graphics.getWidth()-player.char.ship:getHeight()/2 then
+  local new_x = 0
+  if love.keyboard.isDown(keybinding.left) then
+    new_x = new_x - dt * base_speed * player.char.spd
+  end
+  if love.keyboard.isDown(keybinding.right) then
+    new_x = new_x + dt * base_speed * player.char.spd
+  end
+  
+  local new_y = 0
+  if love.keyboard.isDown(keybinding.up) then
+    new_y = new_y - dt * base_speed * player.char.spd
+  end
+  if love.keyboard.isDown(keybinding.down) then
+    new_y = new_y + dt * base_speed * player.char.spd
+  end
+  
+  if new_x ~= 0 then
+    if new_x + player.x  > love.graphics.getWidth()-player.char.ship:getHeight()/2 then
       player.x = love.graphics.getWidth()-player.char.ship:getHeight()/2
-    elseif new_x < player.char.ship:getHeight()/2 then
+    elseif new_x + player.x  < player.char.ship:getHeight()/2 then
       player.x = player.char.ship:getHeight()/2
     else
-      player.x = new_x
+      player.x = new_x + player.x 
     end
   end
   
-  if new_y then
-    if new_y > love.graphics.getHeight()-player.char.ship:getHeight()/2 then
+  if new_yx ~= 0 then
+    if new_y + player.y > love.graphics.getHeight()-player.char.ship:getHeight()/2 then
       player.y = love.graphics.getHeight()-player.char.ship:getHeight()/2
-    elseif new_y < love.graphics.getHeight()/3*2 then
+    elseif new_y + player.y < love.graphics.getHeight()/3*2 then
       player.y = love.graphics.getHeight()/3*2
     else
-      player.y = new_y
+      player.y = new_y + player.y
     end
   end
   
