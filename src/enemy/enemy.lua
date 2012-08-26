@@ -10,12 +10,12 @@ end
 for i = 1,9 do
   enemy.type[i].hp = i+1
   enemy.type[i].speed = 200 - 15 * i
-  enemy.type[i].shoot_rate = 3 - 2*(i/10)
+  enemy.type[i].shoot_rate = 2 - 1.5*(i/10)
 end
 
 enemy.type[10].hp = 100
 enemy.type[10].speed = 10
-enemy.type[10].shoot_rate = 0.5
+enemy.type[10].shoot_rate = 0.75
 enemy.type[10].defaultx = 400
 
 enemy.type[ 1].color = {255,0,0}
@@ -45,17 +45,17 @@ function enemy.reset()
   for i = 1,10 do
     enemy.wave[i] = {}  
   end
-  enemy.wave[ 1].type_list = {10}
+  enemy.wave[ 1].type_list = {20}
   --enemy.wave[ 1].type_list = {1,1,1,1,1,1,1,1,1,1}
-  enemy.wave[ 2].type_list = {6,4}
-  enemy.wave[ 3].type_list = {0,6,4}
-  enemy.wave[ 4].type_list = {0,0,6,4}
-  enemy.wave[ 5].type_list = {0,0,0,6,4}
-  enemy.wave[ 6].type_list = {4,4,3,3,2,2}
-  enemy.wave[ 7].type_list = {0,0,0,0,0,6,4}
-  enemy.wave[ 8].type_list = {0,0,0,0,0,0,6,4}
-  enemy.wave[ 9].type_list = {0,0,0,0,0,0,0,6,4}
-  enemy.wave[10].type_list = {0,0,0,0,0,0,0,6,4,1}
+  enemy.wave[ 2].type_list = {12,8}
+  enemy.wave[ 3].type_list = {0,12,8}
+  enemy.wave[ 4].type_list = {0,0,12,8}
+  enemy.wave[ 5].type_list = {0,0,0,12,8}
+  enemy.wave[ 6].type_list = {8,8,6,6,4,4}
+  enemy.wave[ 7].type_list = {0,0,0,0,0,12,8}
+  enemy.wave[ 8].type_list = {0,0,0,0,0,0,12,8}
+  enemy.wave[ 9].type_list = {0,0,0,0,0,0,0,12,8}
+  enemy.wave[10].type_list = {0,0,0,0,0,0,0,12,8,1}
   
   local temp_shortcut
   
@@ -163,15 +163,19 @@ function enemy.update(dt)
         e.type = new_type
         e.dt_shoot = enemy.spawn_rate * 3 / 4
         e.hp = enemy.type[e.type].hp
+        e.fly = math.random(-1,1)
         if enemy.type[e.type].defaultx then
           e.x = enemy.type[e.type].defaultx
         else
-          e.x = math.random(32,800-32)
+          e.x = math.random(16,800-16)
         end
         table.insert(enemy.data,e)
       else
-        enemy.cwave = enemy.cwave + 1
-        player.char.wavesay()
+        if not player.char.dead then
+          enemy.spawn_rate = enemy.spawn_rate * 0.9
+          enemy.cwave = enemy.cwave + 1
+          player.char.wavesay()
+        end
       end 
     end
   end
@@ -186,6 +190,15 @@ function enemy.update(dt)
       table.insert(bullets.data,bullet)
     end
     v.y = v.y + dt*enemy.type[v.type].speed
+    v.x = v.x + v.fly*dt*enemy.type[v.type].speed
+    if v.x > 800 then
+      v.x = 800
+      v.fly = -v.fly
+    end
+    if v.x < 0 then
+      v.x = 0
+      v.fly = -v.fly
+    end
     if v.y >664 then
       table.remove(enemy.data,i)
     end

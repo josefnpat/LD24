@@ -37,7 +37,7 @@ function prelevel.draw()
     love.graphics.draw(alive_override.portrait,800*i/4,300,0,scale,scale,128,128)
     love.graphics.printf(alive_override.name,800*(i-0.5)/4,300+32+128*scale,256*scale,"center")
     if player.char.name == char.name and not player.char.dead then
-      prelevel.stat("Health "..player.max_hp,800*(i)/4-128*scale,464,256*scale,32,char.hp,player.max_hp,{63,127,63})
+      prelevel.stat("Health",800*(i)/4-128*scale,464,256*scale,32,char.hp,player.max_hp,{63,127,63})
       prelevel.stat("Speed",800*(i)/4-128*scale,504,256*scale,32,char.spd,player.max_spd,{63,63,127})
       prelevel.stat("Damage",800*(i)/4-128*scale,544,256*scale,32,char.dps,player.max_dps,{127,63,63})
     end

@@ -19,10 +19,12 @@ player.tuxxer = {}
 player.charlie = {}
 
 function player.load(arg)
+
+  local base_health_mult = 5
   player.queue_say = {}
   -- FROG
   player.kurtz.dead = nil
-  player.kurtz.hp = 50
+  player.kurtz.hp = 5*base_health_mult
   player.kurtz.hp_cur = player.kurtz.hp
   player.kurtz.spd = 4
   player.kurtz.dps = 1
@@ -36,7 +38,7 @@ function player.load(arg)
 
   -- PENGUIN
   player.tuxxer.dead = nil
-  player.tuxxer.hp = 70
+  player.tuxxer.hp = 7*base_health_mult
   player.tuxxer.hp_cur = player.tuxxer.hp
   player.tuxxer.spd = 5
   player.tuxxer.dps = 3
@@ -50,7 +52,7 @@ function player.load(arg)
 
   --MONKEY
   player.charlie.dead = nil
-  player.charlie.hp = 40
+  player.charlie.hp = 4*base_health_mult
   player.charlie.hp_cur = player.charlie.hp
   player.charlie.spd = 7
   player.charlie.dps = 9

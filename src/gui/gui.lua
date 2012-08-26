@@ -5,6 +5,7 @@ function gui.load(arg)
 end
 
 function gui.draw()
+  love.graphics.setColor(255,255,255,255)
   if player.char.dead and not player.current_say then
     love.graphics.printf("Returning to base in "..math.floor(player.restart_time-player.dead_dt+0.5),0,316,800,"center")
   else
@@ -20,7 +21,6 @@ function gui.draw()
       bullet_text = "Reloading..."
     end
     prelevel.stat(bullet_text,200+xoffset,yoffset,width,32,bullets.last_shoot,bullets.base_shoot/player.char.spd,{63,127,63})
-    
     prelevel.stat("Wave "..enemy.cwave.."/"..#enemy.wave,400+xoffset,yoffset,width,32,enemy.cwave,#enemy.wave,{63,127,63})
     prelevel.stat(enemy.getScoreString(),600+xoffset,yoffset,width,32,enemy.current_score,enemy.max_score,{63,127,63})
   end
