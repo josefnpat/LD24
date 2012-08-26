@@ -14,14 +14,16 @@ function debug.keypressed(key)
     elseif key == "3" then
       player.char = player.charlie
     end
+    if key == "k" then
+      player.char.dead = not player.char.dead 
+    end
   end
 end
 
 function debug.draw()
   if debug.enabled then
     love.graphics.printf("DEBUG [~]",32,16,200,"center")
-    chart_fps:draw("fps",32,32,nil,64)
-    love.graphics.printf("Character: "..player.char.name,32,32,800-32,"right")
+    chart_fps:draw("PFS",32,32,nil,64)
   end
 end
 

@@ -5,6 +5,7 @@ keybinding.right = "d"
 keybinding.left = "a"
 keybinding.shoot = " "
 keybinding.debug = "`"
+keybinding.pause = "escape"
 
 function love.conf(t)
     t.title = "Untitled"        -- The title of the window the game is in (string)

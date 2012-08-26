@@ -1,15 +1,18 @@
 horizon = {}
 
 function horizon.load(arg)
-  horizon.mode_reset()
-  for i = 1,horizon.max_lines do
-    horizon.newline()
-  end
+  horizon.max_lines = 128
+  horizon.max_point = 24
+  horizon.max_points = 8
   horizon.lines = {}
   for i = 1,horizon.max_lines do
     local line = horizon.genline()
     table.insert(horizon.lines,1,line)
   end
+  horizon.push_dt = 0
+  horizon.mode_reset()
+  horizon.pretty_dt = 0
+  horizon.max_point_trend = 0
 end
 
 function horizon.mode_reset()
@@ -44,20 +47,25 @@ function horizon.draw()
   end
 end
 
-horizon.push_dt = 0
-horizon.push_cycle = 1/60
-horizon.max_point = 32
 function horizon.update(dt)
   horizon.push_dt = horizon.push_dt + dt
-  if horizon.push_dt >= horizon.push_cycle then
-    horizon.push_dt = horizon.push_dt - horizon.push_cycle
+  local cycle = 1/(15*player.char.spd)
+  if horizon.push_dt >= cycle then
+    horizon.push_dt = horizon.push_dt - cycle
     horizon.newline()
+  end
+  horizon.pretty_dt = horizon.pretty_dt + dt
+  horizon.max_point = horizon.max_point + math.random(-1,1)/4 + horizon.max_point_trend
+  if horizon.max_point < 8 then
+    horizon.max_point = 8
+    horizon.max_point_trend = 0.5
+  end
+  if horizon.max_point > 56 then
+    horizon.max_point = 56
+    horizon.max_point_trend = -0.25
   end
 end
 
-horizon.lines = {}
-horizon.max_points = 8
-horizon.max_lines = 128
 function horizon.newline()
   local line = horizon.genline()
   if #horizon.lines >= horizon.max_lines then
