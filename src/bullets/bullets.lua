@@ -59,6 +59,10 @@ function bullets.update(dt)
       v.y = v.y - dt*600
       if v.y < -64 then
         table.remove(bullets.data,i)
+        enemy.current_score = enemy.current_score - 1
+        if enemy.current_score < 0 then
+          enemy.current_score = 0
+        end
       end
     end
   end

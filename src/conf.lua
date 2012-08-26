@@ -23,7 +23,7 @@ function keybinding.rebind.arrow()
 end
 
 function love.conf(t)
-    t.title = "Untitled"        -- The title of the window the game is in (string)
+    t.title = "The Singularity is Here!"        -- The title of the window the game is in (string)
     t.author = "josefnpat"      -- The author of the game (string)
     t.url = nil                 -- The website of the game (string)
     t.identity = nil            -- The name of the save directory (string)

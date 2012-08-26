@@ -6,8 +6,8 @@ function lovemenu.load()
   menu.run = true
   menu_view = {}
   menu_view[1] = {
-    title="Untitled",
-    desc="Missing description\n  "..git_string,
+    title="The Singularity\nis Here!",
+    desc="The singularity is here!\nDestroy the evil AI ships so you can plant the nuke at the central computer.\n\nHints:\nUse your movement keys to avoid the falling bullets.\n+1pt for every hit!\n-1pt for every miss.\n\n"..git_string,
     {t="New Game",cb="ng"},
     {t="Options",cb="op"},
     {t="Credits",cb="cr"},
@@ -35,7 +35,7 @@ function lovemenu.load()
   }
   menu_view[4] = {
     title="Credits",
-    desc="Programmer: josefnpat\nArt: josefnpat\nSound: josefnpat\nVoice of Kurtz: josefnpat\nVoice of Tuxxer: Amanda\nVoice of Charlie: josefnpat",
+    desc="Programmer: josefnpat\nArt: josefnpat\nMusic: josefnpat\nVoice of Kurtz: josefnpat\nVoice of Tuxxer: josefnpat\nVoice of Charlie: josefnpat",
     {t="Return",cb="mm"}
   }
   menu:load(menu_view)

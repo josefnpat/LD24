@@ -71,6 +71,10 @@ function debug.draw()
     chart_fps:draw("PFS",32,32,nil,64)
     love.graphics.print("State:"..state,32,128)
     love.graphics.print("R:"..hor_debug_r_min..","..hor_debug_r_max.." G:"..hor_debug_g_min..","..hor_debug_g_max.." B:"..hor_debug_b_min..","..hor_debug_b_max,32,256)
+    if debug.inv then
+      love.graphics.print("you're invincible!",32,300)
+    end
+    love.graphics.print("Points: "..enemy.current_score,32,332)
   end
 end
 

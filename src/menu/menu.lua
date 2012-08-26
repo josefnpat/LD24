@@ -1,6 +1,6 @@
 menu = {}
 
-menu.font_title = love.graphics.newFont("assets/ld24.ttf",48)
+menu.font_title = love.graphics.newFont("assets/ld24.ttf",32)
 menu.font_desc = love.graphics.newFont("assets/ld24.ttf",16)
 menu.font_desc:setLineHeight(1.2)
 menu.font_menu = love.graphics.newFont("assets/ld24.ttf",18)
@@ -40,10 +40,12 @@ function menu:draw()
     love.graphics.rectangle("fill",love.graphics.getWidth()*6/10,0,love.graphics.getWidth()*3/10,love.graphics.getHeight())
     love.graphics.setColor(255,255,255,96+96*math.abs(math.sin(menu.title_fade)))
     love.graphics.setFont(menu.font_title)
-    love.graphics.print(
+    love.graphics.printf(
       menu.view[menu.state].title,
-      (love.graphics.getWidth()*6/10)/2-(menu.font_title:getWidth(menu.view[menu.state].title)/2),
-      love.graphics.getHeight()*0.9-(menu.font_title:getHeight())
+      love.graphics.getHeight()*0.1,
+      love.graphics.getHeight()*0.9-(menu.font_title:getHeight()),
+      800,
+      "left"
     )
     love.graphics.setColor(255,255,255,192)
     love.graphics.setFont(menu.font_desc)
