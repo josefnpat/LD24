@@ -23,6 +23,7 @@ function debug.keypressed(key)
     end
     if key == "w" then
       enemy.cwave = enemy.cwave + 1
+      player.char.wavesay()
     end
     
     if key == "a" then
