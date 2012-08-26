@@ -163,7 +163,8 @@ function enemy.update(dt)
         e.type = new_type
         e.dt_shoot = enemy.spawn_rate * 3 / 4
         e.hp = enemy.type[e.type].hp
-        e.fly = math.random(-1,1)
+        e.xfly = math.random(-1,1)
+        e.yfly = 1
         if enemy.type[e.type].defaultx then
           e.x = enemy.type[e.type].defaultx
         else
@@ -189,19 +190,31 @@ function enemy.update(dt)
       bullet.enemy = true
       table.insert(bullets.data,bullet)
     end
-    v.y = v.y + dt*enemy.type[v.type].speed
-    v.x = v.x + v.fly*dt*enemy.type[v.type].speed
-    if v.x > 800 then
-      v.x = 800
-      v.fly = -v.fly
+    v.y = v.y + dt*enemy.type[v.type].speed*v.yfly
+    if v.y > 400 then
+      v.y = 400
+      v.yfly = -1
     end
-    if v.x < 0 then
-      v.x = 0
-      v.fly = -v.fly
+    if v.y < -64 then
+      v.y = -64
+      v.yfly = 1
     end
+    --[[
     if v.y >664 then
       table.remove(enemy.data,i)
     end
+    --]]
+    
+    v.x = v.x + v.xfly*dt*enemy.type[v.type].speed
+    if v.x > 800 then
+      v.x = 800
+      v.xfly = -v.xfly
+    end
+    if v.x < 0 then
+      v.x = 0
+      v.xfly = -v.xfly
+    end
+
   end
 end
 
