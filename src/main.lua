@@ -6,8 +6,11 @@ chart_fps = chartlib.new(200)
 horizion = require("horizon/horizon")
 gui = require("gui/gui")
 player = require("player/player")
+script = require("script/script")
 debug = require("debug/debug")
 bullets = require("bullets/bullets")
+enemy = require("enemy/enemy")
+endgame = require("endgame/endgame")
 
 font_ld24_small = love.graphics.newFont("assets/ld24.ttf",16)
 font_ld24_small:setLineHeight(1.2)
@@ -25,24 +28,23 @@ function love.load(arg)
   prelevel.load(arg)
   bullets.load(arg)
   gui.load(arg)
-  player.say("Kurtz!",1,player.charlie)
-  player.say("I'm going down! Tell kurtz that I ...",4,player.tuxxer)
-  player.say("Kurtz!",1,player.charlie)
-  player.say("...",2,player.charlie)
-  player.say("Kurtz!",1,player.charlie)
+  enemy.load(arg)
 end
 
 function love.draw()
   if state == "game" then
     horizon.draw()
     bullets.draw()
+    enemy.draw()
     player.draw()
     gui.draw()
     if pause then
-      love.graphics.printf("PAUSED ["..keybinding.pause.."]",0,16,800,"center")
+      love.graphics.printf("PAUSED ["..keybinding.pause.."]",0,300,800,"center")
     end
   elseif state =="prelevel" then
     prelevel.draw()
+  elseif state =="endgame" then
+    endgame.draw()
   end
   debug.draw()
 end
@@ -55,6 +57,7 @@ function love.update(dt)
       bullets.update(dt)
       player.update(dt)
       gui.update(dt)
+      enemy.update(dt)
     end 
   elseif state =="prelevel" then
     prelevel.update(dt)  

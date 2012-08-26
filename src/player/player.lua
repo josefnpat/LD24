@@ -15,10 +15,13 @@ Frog - Kurtz
 
 player = {}
 
+player.kurtz = {}
+player.tuxxer = {}
+player.charlie = {}
+
 function player.load(arg)
   player.queue_say = {}
   -- FROG
-  player.kurtz = {}
   player.kurtz.hp = 5
   player.kurtz.hp_cur = player.kurtz.hp
   player.kurtz.spd = 4
@@ -32,7 +35,6 @@ function player.load(arg)
   player.kurtz.name = "Kurtz"
 
   -- PENGUIN
-  player.tuxxer = {}
   player.tuxxer.hp = 7
   player.tuxxer.hp_cur = player.tuxxer.hp
   player.tuxxer.spd = 5
@@ -46,7 +48,6 @@ function player.load(arg)
   player.tuxxer.name = "Tuxxer"
 
   --MONKEY
-  player.charlie = {153,103,54}
   player.charlie.hp = 4
   player.charlie.hp_cur = player.charlie.hp
   player.charlie.spd = 7
@@ -62,6 +63,11 @@ function player.load(arg)
   player.dead = {}
   player.dead.portrait = love.graphics.newImage("assets/dead.png")
   player.dead.name = "Deceased"
+  
+  player.chars = {}
+  player.chars[1] = player.kurtz
+  player.chars[2] = player.tuxxer
+  player.chars[3] = player.charlie
 
   player.char = player.kurtz
   player.x = love.graphics.getWidth()/2
@@ -70,45 +76,78 @@ function player.load(arg)
   player.color.textbg = {255,255,255,255}
   player.color.text = {255,255,255,255}
   player.color.name = {54,54,54}
+  player.dead_dt = 0
+  player.shipfade = 0
+  player.restart_time = 3
 end
 
 function player.update(dt)
-  local base_speed = 75
-  
-  local new_x = 0
-  if love.keyboard.isDown(keybinding.left) then
-    new_x = new_x - dt * base_speed * player.char.spd
-  end
-  if love.keyboard.isDown(keybinding.right) then
-    new_x = new_x + dt * base_speed * player.char.spd
-  end
-  
-  local new_y = 0
-  if love.keyboard.isDown(keybinding.up) then
-    new_y = new_y - dt * base_speed * player.char.spd
-  end
-  if love.keyboard.isDown(keybinding.down) then
-    new_y = new_y + dt * base_speed * player.char.spd
-  end
-  
-  if new_x ~= 0 then
-    if new_x + player.x  > love.graphics.getWidth()-player.char.ship:getHeight()/2 then
-      player.x = love.graphics.getWidth()-player.char.ship:getHeight()/2
-    elseif new_x + player.x  < player.char.ship:getHeight()/2 then
-      player.x = player.char.ship:getHeight()/2
-    else
-      player.x = new_x + player.x 
+  if player.char.hp_cur <= 0 then
+    player.shipfade = player.shipfade + dt
+    if player.shipfade > 2.55 then
+      player.shipfade = 2.55
     end
-  end
-  
-  if new_yx ~= 0 then
-    if new_y + player.y > love.graphics.getHeight()-player.char.ship:getHeight()/2 then
-      player.y = love.graphics.getHeight()-player.char.ship:getHeight()/2
-    elseif new_y + player.y < love.graphics.getHeight()/3*2 then
-      player.y = love.graphics.getHeight()/3*2
-    else
-      player.y = new_y + player.y
+    if not player.char.dead then
+      player.char.deathsay()
     end
+    player.char.dead = true
+    if not player.current_say then
+      player.dead_dt = player.dead_dt + dt
+    end
+    if player.dead_dt > player.restart_time then
+      for i,v in pairs(player.chars) do
+        if not v.dead then
+          player.char = v
+          player.dead_dt = 0
+          enemy.load(arg)
+          bullets.load(arg)
+          horizon.load(arg)
+          player.shipfade = 0
+          break
+        end
+      end
+      state = "prelevel"
+    end
+    
+  else
+    local base_speed = 75
+    
+    local new_x = 0
+    if love.keyboard.isDown(keybinding.left) then
+      new_x = new_x - dt * base_speed * player.char.spd
+    end
+    if love.keyboard.isDown(keybinding.right) then
+      new_x = new_x + dt * base_speed * player.char.spd
+    end
+    
+    local new_y = 0
+    if love.keyboard.isDown(keybinding.up) then
+      new_y = new_y - dt * base_speed * player.char.spd
+    end
+    if love.keyboard.isDown(keybinding.down) then
+      new_y = new_y + dt * base_speed * player.char.spd
+    end
+    
+    if new_x ~= 0 then
+      if new_x + player.x  > love.graphics.getWidth()-player.char.ship:getHeight()/2 then
+        player.x = love.graphics.getWidth()-player.char.ship:getHeight()/2
+      elseif new_x + player.x  < player.char.ship:getHeight()/2 then
+        player.x = player.char.ship:getHeight()/2
+      else
+        player.x = new_x + player.x 
+      end
+    end
+    
+    if new_yx ~= 0 then
+      if new_y + player.y > love.graphics.getHeight()-player.char.ship:getHeight()/2 then
+        player.y = love.graphics.getHeight()-player.char.ship:getHeight()/2
+      elseif new_y + player.y < love.graphics.getHeight()/3*2 then
+        player.y = love.graphics.getHeight()/3*2
+      else
+        player.y = new_y + player.y
+      end
+    end
+    
   end
   
   if player.current_say then
@@ -117,10 +156,11 @@ function player.update(dt)
       player.current_say = table.remove(player.queue_say,1)
     end
   end
+  
 end
 
 function player.draw()
-  love.graphics.setColor(player.char.color[1],player.char.color[2],player.char.color[3])
+  love.graphics.setColor(player.char.color[1],player.char.color[2],player.char.color[3],255-player.shipfade*100)
   love.graphics.draw(player.char.ship,player.x,player.y,0,1,1,player.char.ship:getWidth()/2,player.char.ship:getHeight()/2)
   love.graphics.setColor(255,255,255)
   local current_char = player.char
@@ -149,7 +189,11 @@ function player.say(text,time,char)
   local say = {}
   say.text = text
   say.time_remain = time
-  say.char = char
+  if char then
+    say.char = char
+  else
+    say.char = player.char
+  end
   table.insert(player.queue_say,say)
 end
 
