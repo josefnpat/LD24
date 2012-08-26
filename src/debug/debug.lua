@@ -2,7 +2,7 @@ debug = {}
 
 debug.enabled = false
 debug.hard_pause = false
-
+debug.inv = false
 function debug.keypressed(key)
   if key == keybinding.debug then
     debug.enabled = not debug.enabled
@@ -56,6 +56,10 @@ function debug.keypressed(key)
     
     if key == "f1" then
       debug.hard_pause = not debug.hard_pause
+    end
+    
+    if key == "i" then
+      debug.inv = not debug.inv
     end
     
   end

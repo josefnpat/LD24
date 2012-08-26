@@ -65,7 +65,9 @@ function bullets.update(dt)
       if bullets.dist(v.x,v.y,player.x,player.y) < 64 then
         bullets.sound_dmg:play()
         table.remove(bullets.data,i)
-        player.char.hp_cur = player.char.hp_cur - 1
+        if not debug.inv then
+          player.char.hp_cur = player.char.hp_cur - 1
+        end
         if player.char.hp_cur < 0 then
           player.char.hp_cur = 0
         end
