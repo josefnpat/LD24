@@ -21,13 +21,14 @@ player.charlie = {}
 function player.load(arg)
 
   local base_health_mult = 10
+  local base_dps_mult = 0.25
   player.queue_say = {}
   -- FROG
   player.kurtz.dead = nil
   player.kurtz.hp = 5*base_health_mult
   player.kurtz.hp_cur = player.kurtz.hp
   player.kurtz.spd = 4
-  player.kurtz.dps = 1
+  player.kurtz.dps = 1*base_dps_mult
   -- total 10
   player.kurtz.color = {153,54,54}
   player.kurtz.portrait = love.graphics.newImage("assets/kurtz.png")
@@ -41,7 +42,7 @@ function player.load(arg)
   player.tuxxer.hp = 7*base_health_mult
   player.tuxxer.hp_cur = player.tuxxer.hp
   player.tuxxer.spd = 5
-  player.tuxxer.dps = 3
+  player.tuxxer.dps = 3*base_dps_mult
   -- total 15
   player.tuxxer.color = {153,54,103}
   player.tuxxer.portrait = love.graphics.newImage("assets/tuxxer.png")
@@ -55,7 +56,7 @@ function player.load(arg)
   player.charlie.hp = 4*base_health_mult
   player.charlie.hp_cur = player.charlie.hp
   player.charlie.spd = 7
-  player.charlie.dps = 9
+  player.charlie.dps = 9*base_dps_mult
   -- total 20
   player.charlie.color = {153,103,54}
   player.charlie.portrait = love.graphics.newImage("assets/charlie.png")

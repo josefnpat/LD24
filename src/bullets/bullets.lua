@@ -1,5 +1,9 @@
 bullets = {}
 
+bullets.sound_dmg  = love.audio.newSource("assets/dmg.wav", "static" )
+bullets.sound_enemy_dmg  = love.audio.newSource("assets/enemy_dmg.wav", "static" )
+bullets.sound_shoot  = love.audio.newSource("assets/shoot.wav", "static" )
+
 function bullets.load(arg)
   bullets.data = {}
   bullets.last_shoot = 0
@@ -41,6 +45,7 @@ function bullets.update(dt)
     bullet.x = player.x
     bullet.y = player.y
     table.insert(bullets.data,bullet)
+    bullets.sound_shoot:play()
   end
   for i,v in ipairs(bullets.data) do
     if v.enemy then
@@ -58,6 +63,7 @@ function bullets.update(dt)
   for i,v in ipairs(bullets.data) do
     if v.enemy then
       if bullets.dist(v.x,v.y,player.x,player.y) < 64 then
+        bullets.sound_dmg:play()
         table.remove(bullets.data,i)
         player.char.hp_cur = player.char.hp_cur - 1
         if player.char.hp_cur < 0 then
@@ -71,6 +77,7 @@ function bullets.update(dt)
           enemy.current_score = enemy.current_score + 1
           w.hp = w.hp - 1
           if w.hp <= 0 then
+            bullets.sound_enemy_dmg:play()
             table.remove(enemy.data,j)
           end
         end

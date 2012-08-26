@@ -4,6 +4,7 @@ print(git_string)
 
 math.randomseed( os.time() )
 
+require 'slam'
 splashlovelib = require("splashlovelib/splashlovelib")
 splashlib = require("splashlib/splashlib")
 prelevel = require('prelevel/prelevel')
