@@ -1,6 +1,7 @@
 debug = {}
 
 debug.enabled = false
+debug.hard_pause = false
 
 function debug.keypressed(key)
   if key == keybinding.debug then
@@ -50,6 +51,10 @@ function debug.keypressed(key)
       hor_debug_b_max  = hor_debug_b_max  + 16
     elseif key == "n" then
       hor_debug_b_max  = hor_debug_b_max  - 16
+    end
+    
+    if key == "f1" then
+      debug.hard_pause = not debug.hard_pause
     end
     
   end

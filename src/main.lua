@@ -72,6 +72,7 @@ end
 
 function love.update(dt)
   chart_fps:push(love.timer.getFPS())
+  if debug.hard_pause then return end
   if state == "splashlove" then
     splashlovelib.update(dt)
     if splashlovelib.done() then
