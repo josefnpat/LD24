@@ -1,8 +1,8 @@
 keybinding = {}
-keybinding.up = "w"
-keybinding.down = "s"
-keybinding.right = "d"
-keybinding.left = "a"
+keybinding.up = "up"
+keybinding.down = "down"
+keybinding.right = "right"
+keybinding.left = "left"
 keybinding.shoot = " "
 keybinding.debug = "`"
 keybinding.pause = "escape"

@@ -17,6 +17,9 @@ function debug.keypressed(key)
     if key == "k" then
       player.char.dead = not player.char.dead 
     end
+    if key == "d" then
+      player.char.hp_cur = player.char.hp_cur - 1
+    end
   end
 end
 

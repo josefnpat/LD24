@@ -20,6 +20,7 @@ function player.load(arg)
   -- FROG
   player.kurtz = {}
   player.kurtz.hp = 5
+  player.kurtz.hp_cur = player.kurtz.hp
   player.kurtz.spd = 4
   player.kurtz.dps = 1
   -- total 10
@@ -33,6 +34,7 @@ function player.load(arg)
   -- PENGUIN
   player.tuxxer = {}
   player.tuxxer.hp = 7
+  player.tuxxer.hp_cur = player.tuxxer.hp
   player.tuxxer.spd = 5
   player.tuxxer.dps = 3
   -- total 15
@@ -46,6 +48,7 @@ function player.load(arg)
   --MONKEY
   player.charlie = {153,103,54}
   player.charlie.hp = 4
+  player.charlie.hp_cur = player.charlie.hp
   player.charlie.spd = 7
   player.charlie.dps = 9
   -- total 20
@@ -71,12 +74,17 @@ end
 
 function player.update(dt)
   local base_speed = 75
+  
   local new_x
   if love.keyboard.isDown(keybinding.left) then
     new_x = player.x - dt * base_speed * player.char.spd
   end
   if love.keyboard.isDown(keybinding.right) then
-    new_x = player.x + dt * base_speed * player.char.spd
+    if new_x then
+      new_x = nil
+    else
+      new_x = player.x + dt * base_speed * player.char.spd
+    end
   end
   
   local new_y
@@ -84,8 +92,13 @@ function player.update(dt)
     new_y = player.y - dt * base_speed * player.char.spd
   end
   if love.keyboard.isDown(keybinding.down) then
-    new_y = player.y + dt * base_speed * player.char.spd
+    if new_y then
+      new_y = nil
+    else
+      new_y = player.y + dt * base_speed * player.char.spd
+    end
   end
+  
   if new_x then
     if new_x > love.graphics.getWidth()-player.char.ship:getHeight()/2 then
       player.x = love.graphics.getWidth()-player.char.ship:getHeight()/2
@@ -95,6 +108,7 @@ function player.update(dt)
       player.x = new_x
     end
   end
+  
   if new_y then
     if new_y > love.graphics.getHeight()-player.char.ship:getHeight()/2 then
       player.y = love.graphics.getHeight()-player.char.ship:getHeight()/2
@@ -104,10 +118,11 @@ function player.update(dt)
       player.y = new_y
     end
   end
+  
   if player.current_say then
     player.current_say.time_remain = player.current_say.time_remain - dt
     if player.current_say.time_remain < 0 then
-      player.current_say = nil
+      player.current_say = table.remove(player.queue_say,1)
     end
   end
 end
