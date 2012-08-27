@@ -3,29 +3,44 @@ Ludum Dare 24
 The Singularity is Here!
 ========================
 
+Description:
+
+The year is 2045, and the singularity is here. Machines have evolved, and
+they're gunning for us. Ray Kurzweil predicted it, but he didn't imagine that
+it would start an armageddon between man and machine. Our three heroes, 
+Kurtz, Tuxxer and Charlie, set off in a daring do or die adventure to destroy
+the central computer which runs all of the AI.
+
 Destroy the evil AI ships so you can plant the nuke at the central computer.
+You have three unique lives to do so.
+
+The game has three subtle modes:
+
+Easy: Finish the game. Everyone is expendable.
+Medium: Finish the game only losing one comrade.
+Hard: Finish the game with the whole team in one piece.
 
 Hints:
 ======
 
 * Use your movement keys to avoid the falling bullets.
-* Spacebar to shoot!
+* Space to shoot!
 * +1pt for every hit!
 * -1pt for every miss.
 
 Featuring:
 ==========
 
-* Three original characters made in GIMP.
-* 13 original ships made in Alchemy.
-* Original music made in LSDJ.
-* Over 35 unique sound bytes.
-* Tons of fun dialog.
-* Awesome slash screens.
-* Beautiful menus.
-* Font made in fontstruct.
-* Awesome sound effects effortlessly generated with bfxr.
-* Crazy 3d like moving background thing.
+* Three original almost-human characters made in GIMP!
+* 13 original things that look like spaceships made in Alchemy!
+* Original music made in LSDJ!
+* Over 35 unique sound bytes made by one voice actor! (There's 36)
+* Tons of fun dialog that will make you think twice about your life!
+* Awesome slash screens that will make you pee your pants!
+* Beautiful dynamic menus with three different backgrounds!
+* Font made with tons of pixels in fontstruct.
+* Awesome sound effects effortlessly generated with bfxr using all eight bits!
+* Wild and Crazy 3D like moving background thing that will eat your CPU!
 
 Warnings:
 =========
