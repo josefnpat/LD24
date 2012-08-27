@@ -1,16 +1,20 @@
 Ludum Dare 24
 
 The Singularity is Here!
+========================
 
 Destroy the evil AI ships so you can plant the nuke at the central computer.
 
 Hints:
+======
+
 * Use your movement keys to avoid the falling bullets.
 * Spacebar to shoot!
 * +1pt for every hit!
 * -1pt for every miss.
 
 Featuring:
+==========
 
 * Three original characters made in GIMP.
 * 13 original ships made in Alchemy.
@@ -23,3 +27,8 @@ Featuring:
 * Awesome sound effects effortlessly generated with bfxr.
 * Crazy 3d like moving background thing.
 
+Warnings:
+=========
+
+**If you are running OS/X, you may find that it will lag.**
+To fix this, disable SFX in the main menu!
