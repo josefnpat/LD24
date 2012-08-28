@@ -114,7 +114,6 @@ function player.update(dt)
       player.port_fade = 255
     end
   end
-  print(player.port_fade)
   if player.char.hp_cur <= 0 then
     player.shipfade = player.shipfade + dt
     if player.shipfade > 2.55 then
