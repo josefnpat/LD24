@@ -224,16 +224,13 @@ function enemy.update(dt)
     if v.y > 400 then
       v.y = 400
       v.yfly = -1
+      v.xfly = math.random(-1,1)
     end
     if v.y < -64 then
       v.y = -64
       v.yfly = 1
+      v.xfly = math.random(-1,1)
     end
-    --[[
-    if v.y >664 then
-      table.remove(enemy.data,i)
-    end
-    --]]
     
     v.x = v.x + v.xfly*dt*enemy.type[v.type].speed
     if v.x > 800 then

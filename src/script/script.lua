@@ -66,7 +66,7 @@ end
 
 function player.kurtz.deathsay()
   sounds.kurtz.death:play()
-  player.say("Houston, we have a problem.",2.25)
+  player.say("Houston, we have a problem!",2.25)
   player.say("...",1,player.charlie)
   player.say("Kurtz!",1,player.tuxxer)
 end
@@ -81,7 +81,7 @@ function player.kurtz.wavesay()
     player.say("127.0.0.1 is where the Heart is.",4.5)
   elseif enemy.cwave == 4 then
     sounds.kurtz.wave[ 4]:play()
-    player.say("Yes, we have a dress code. You have to dress.",3.5)
+    player.say("Yes, we have a dress code. You have to dress!",3.5)
   elseif enemy.cwave == 5 then
     sounds.kurtz.wave[ 5]:play()
     player.say("Spock, I do not know too much about these little tribbles yet,",3)
@@ -105,13 +105,13 @@ function player.kurtz.wavesay()
     player.say("Help me, Obi-Wan Kenobi; you're my only hope.",3)
   elseif enemy.cwave == 11 then
     sounds.kurtz.wave[11]:play()
-    player.say("If at first you don't succeed; call it version 1.0",4.5)
+    player.say("If at first you don't succeed; call it version 1.0.",4.5)
   end
 end
 
 function player.tuxxer.lifesay()
   sounds.tuxxer.intro:play()
-  player.say("If at first you don't succeed, destroy all the evidence",4)
+  player.say("If at first you don't succeed, destroy all the evidence!",4)
 end
 
 function player.tuxxer.deathsay()
@@ -129,7 +129,7 @@ function player.tuxxer.wavesay()
     player.say("Welcome to Hell...Here's your accordion.",3)
   elseif enemy.cwave == 4 then
     sounds.tuxxer.wave[ 4]:play()
-    player.say("Never hit a guy with glasses. Always use your fists.",4)
+    player.say("Never hit a guy with glasses. Always use your fists!",4)
   elseif enemy.cwave == 5 then
     sounds.tuxxer.wave[ 5]:play()
     player.say("The only time I open my mouth is to change feet.",4)
@@ -141,22 +141,22 @@ function player.tuxxer.wavesay()
     player.say("I'll have to think twice about it before I give it a second thought.",4)
   elseif enemy.cwave == 8 then
     sounds.tuxxer.wave[ 8]:play()
-    player.say("The meek shall inherit the Earth after we're done with it.",4)
+    player.say("The meek shall inherit the earth after we're done with it.",4)
   elseif enemy.cwave == 9 then
     sounds.tuxxer.wave[ 9]:play()
-    player.say("You're schizophrenic? Gee, that makes four of us.",4)
+    player.say("You're schizophrenic? Gee, that makes four of us!",4)
   elseif enemy.cwave == 10 then
     sounds.tuxxer.wave[10]:play()
     player.say("Floggings will continue until morale improves.",4.5)
   elseif enemy.cwave == 11 then
     sounds.tuxxer.wave[11]:play()
-    player.say("Honesty is the best policy. But insanity is a better defense.",5)
+    player.say("Honesty is the best policy, but insanity is a better defense!",5)
   end
 end
 
 function player.charlie.lifesay()
   sounds.charlie.intro:play()
-  player.say("Gentlemen, we are being killed on the beaches. Lets go inland and be killed.",5.5)
+  player.say("Gentlemen, we are being killed on the beaches. Lets go inland and be killed!",5.5)
 end
 
 function player.charlie.deathsay()
@@ -195,7 +195,7 @@ function player.charlie.wavesay()
     player.say("We're surrounded. That simplifies the problem.",3.25)
   elseif enemy.cwave == 11 then
     sounds.charlie.wave[11]:play()
-    player.say("Theirs not to reason why, theirs but to do and die",4)
+    player.say("Theirs not to reason why, theirs but to do and die.",4)
   end
 end
 

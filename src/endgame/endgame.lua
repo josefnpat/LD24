@@ -3,16 +3,17 @@ endgame = {}
 function endgame.draw()
   love.graphics.setColor(255,255,255,255)
   love.graphics.setFont(font_ld24_xlarge)
-  if dead == 3 then
-    love.graphics.printf("Game over.",0,300-32,800,"center")
-  else
-    love.graphics.printf("You win!",0,300-32,800,"center")  
-  end
   local dead = 0
   for i,v in pairs(player.chars) do
     if v.dead then
       dead = dead + 1
     end
+  end
+
+  if dead == 3 then
+    love.graphics.printf("Game over.",0,300-32,800,"center")
+  else
+    love.graphics.printf("You win!",0,300-32,800,"center")  
   end
   
   local story

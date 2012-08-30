@@ -7,7 +7,7 @@ function lovemenu.load()
   menu_view = {}
   menu_view[1] = {
     title="The Singularity\nis Here!",
-    desc="The singularity is here!\nDestroy the evil AI ships so you can plant the nuke at the central computer.\n\nHints:\nUse your movement keys to avoid the falling bullets.\n+1pt for every hit!\n-1pt for every miss.\n\n"..git_string,
+    desc="The singularity is here!\nDestroy the evil AI ships so you can plant the nuke at the central computer.\n\nHints:\nUse your movement keys to avoid the falling bullets.\nSpace to shoot.\n+1pt for every hit!\n-1pt for every miss.\n\n"..git_string,
     {t="New Game",cb="ng"},
     {t="Options",cb="op"},
     {t="Credits",cb="cr"},
