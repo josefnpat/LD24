@@ -24,11 +24,10 @@ end
 function bullets.draw()
   for i,v in ipairs(bullets.data) do
     local trans = bullets.gentrans(v.y)
+    love.graphics.setColor(255,255,255,trans)
     if v.enemy then
-      love.graphics.setColor(127,0,0,trans)
-      love.graphics.draw(enemy.bullet,v.x,v.y,math.pi,0.5,0.5,32,32)
+      love.graphics.draw(enemy.bullet,v.x,v.y,0,0.5,0.5,32,32)
     else
-      love.graphics.setColor(255,255,255,trans)
       love.graphics.draw(player.char.bullet,v.x,v.y,0,0.5,0.5,32,32)
     end
   end
@@ -51,7 +50,7 @@ function bullets.update(dt)
   end
   for i,v in ipairs(bullets.data) do
     if v.enemy then
-      v.y = v.y + dt*600
+      v.y = v.y + dt*300
       if v.y > 664 then
         table.remove(bullets.data,i)
       end    
@@ -68,7 +67,7 @@ function bullets.update(dt)
   end
   for i,v in ipairs(bullets.data) do
     if v.enemy then
-      if bullets.dist(v.x,v.y,player.x,player.y) < 64 then
+      if bullets.dist(v.x,v.y,player.x,player.y) < 32+16 then
         if sfx then
           bullets.sound_dmg:play()
         end

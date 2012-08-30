@@ -8,7 +8,7 @@ for i = 1,10 do
 end
 
 for i = 1,9 do
-  enemy.type[i].hp = math.floor((i+1)/2)
+  enemy.type[i].hp = math.floor((i+4)/2)
   enemy.type[i].speed = 200 - 15 * i
   enemy.type[i].shoot_rate = 2 - 1.5*(i/10)
 end

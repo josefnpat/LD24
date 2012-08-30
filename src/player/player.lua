@@ -194,7 +194,7 @@ end
 function player.draw()
   local yoffset = 204 + (player.port_fade)/10 -- 600 - 256 + 64) /2
   love.graphics.setColor(player.char.color[1],player.char.color[2],player.char.color[3],255-player.shipfade*100)
-  love.graphics.draw(player.char.ship,player.x,player.y,0,1,1,player.char.ship:getWidth()/2,player.char.ship:getHeight()/2)
+  love.graphics.draw(player.char.ship,player.x,player.y,0,0.5,0.5,player.char.ship:getWidth()/2,player.char.ship:getHeight()/2)
   love.graphics.setColor(255,255,255,255-player.port_fade)
   local current_char = player.char
   if player.current_say then

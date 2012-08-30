@@ -74,7 +74,7 @@ end
 function player.kurtz.wavesay()
   if enemy.cwave == 2 then
     sounds.kurtz.wave[ 2]:play()
-    player.say("From a programmer’s point of view,",1.75)
+    player.say("From a computer’s point of view,",1.75)
     player.say("the user is a peripheral that types when you issue a read request.",4)
   elseif enemy.cwave == 3 then
     sounds.kurtz.wave[ 3]:play()

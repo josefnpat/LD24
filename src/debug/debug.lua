@@ -62,6 +62,10 @@ function debug.keypressed(key)
       debug.inv = not debug.inv
     end
     
+    if key == " " then
+      player.current_say = nil
+    end
+    
   end
 end
 
