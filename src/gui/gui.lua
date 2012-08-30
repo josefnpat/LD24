@@ -21,7 +21,7 @@ function gui.draw()
       bullet_text = "Reloading..."
     end
     prelevel.stat(bullet_text,200+xoffset,yoffset,width,32,bullets.last_shoot,bullets.base_shoot/player.char.spd,{63,127,63})
-    if enemy.cwave > 10 then
+    if enemy.boss then
       prelevel.stat("Boss",400+xoffset,yoffset,width,32,enemy.boss.hp,enemy.type[10].hp,{63,127,63})
     else
       prelevel.stat("Wave "..enemy.cwave.."/"..#enemy.wave,400+xoffset,yoffset,width,32,enemy.cwave,#enemy.wave,{63,127,63})

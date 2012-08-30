@@ -3,8 +3,11 @@ endgame = {}
 function endgame.draw()
   love.graphics.setColor(255,255,255,255)
   love.graphics.setFont(font_ld24_xlarge)
-  
-  love.graphics.printf("Game over.",0,300-32,800,"center")
+  if dead == 3 then
+    love.graphics.printf("Game over.",0,300-32,800,"center")
+  else
+    love.graphics.printf("You win!",0,300-32,800,"center")  
+  end
   local dead = 0
   for i,v in pairs(player.chars) do
     if v.dead then
@@ -26,7 +29,7 @@ function endgame.draw()
   
   love.graphics.setFont(font_ld24_small)
   love.graphics.printf(story,0,364,800,"center")
-  love.graphics.printf(enemy.getScoreString().." "..enemy.current_score.."/"..enemy.max_score,0,428,800,"center")
+  prelevel.stat(enemy.getScoreString(),200,428,400,32,enemy.current_score,enemy.max_score,{63,127,63})
   
   love.graphics.printf("Press "..keybinding.pause.." to return to the main menu.",0,492,800,"center")
 end

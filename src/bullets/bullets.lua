@@ -67,7 +67,7 @@ function bullets.update(dt)
   end
   for i,v in ipairs(bullets.data) do
     if v.enemy then
-      if bullets.dist(v.x,v.y,player.x,player.y) < 32+16 then
+      if bullets.dist(v.x,v.y,player.x,player.y) < 32+16 and not player.char.dead then
         if sfx then
           bullets.sound_dmg:play()
         end

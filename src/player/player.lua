@@ -20,7 +20,7 @@ player.charlie = {}
 
 function player.load(arg)
 
-  local base_health_mult = 10
+  local base_health_mult = 4
   local base_dps_mult = 0.25
   player.queue_say = {}
   -- FROG
@@ -135,6 +135,8 @@ function player.update(dt)
           bullets.load(arg)
           horizon.load(arg)
           player.shipfade = 0
+          enemy.reset_type()
+          enemy.boss = nil
           break
         end
       end
@@ -192,7 +194,7 @@ function player.update(dt)
 end
 
 function player.draw()
-  local yoffset = 204 + (player.port_fade)/10 -- 600 - 256 + 64) /2
+  local yoffset = 204 --+ (player.port_fade)/10 -- 600 - 256 + 64) /2
   love.graphics.setColor(player.char.color[1],player.char.color[2],player.char.color[3],255-player.shipfade*100)
   love.graphics.draw(player.char.ship,player.x,player.y,0,0.5,0.5,player.char.ship:getWidth()/2,player.char.ship:getHeight()/2)
   love.graphics.setColor(255,255,255,255-player.port_fade)

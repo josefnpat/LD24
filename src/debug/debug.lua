@@ -64,6 +64,7 @@ function debug.keypressed(key)
     
     if key == " " then
       player.current_say = nil
+      player.queue_say = {}
     end
     
   end
